@@ -1,0 +1,32 @@
+.headerDiv{
+    background-color: #2E0052;
+    height: 5vh;
+    width: 97vw;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 0% 1% 0% 2%;
+    position: static;
+}
+
+.headerDiv img{
+    height: 12%;
+    width: 15%;
+}
+
+.btns span{
+    margin: 0 1vw;
+    cursor: pointer;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2% 0%;
+    color:white;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
