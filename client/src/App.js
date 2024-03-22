@@ -4,6 +4,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import NotFoundPage from "./pages/NoPageFound/NotFound";
 import HomePage from "./pages/HomePage/HomePage";
 import SuccessPage from './pages/SuccessPage/SuccessPage'
+import AllInvoice from './pages/AllInvoicePage/AllInvoice'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/HomePage" element={<HomePage />} />
           <Route path="/Success" element={<SuccessPage />} />
+          <Route path="/AllInvoice" element={<AllInvoice />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>

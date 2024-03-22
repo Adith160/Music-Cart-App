@@ -100,7 +100,7 @@ u {
 
     .mainContainer {
         width: 80%;
-        height: 42%;
+        height: 48%;
         margin-left: -5%;
     }
     
@@ -113,7 +113,7 @@ u {
     }
     
     .mainContainer form label{
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .mainContainer form input{

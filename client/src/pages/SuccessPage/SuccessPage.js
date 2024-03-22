@@ -4,7 +4,6 @@ import Footer from "../../components/Footer/Footer";
 import FooterMenu from "../../components/FooterMenu/FooterMenu";
 import logo from "../../assets/Icons/logo.png";
 import styles from "./SuccessPage.module.css";
-import "./SuccessPage.module.css";
 import success from "../../assets/Images/success.png";
 import { useNavigate } from "react-router-dom";
 
