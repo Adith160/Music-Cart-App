@@ -1,0 +1,45 @@
+.headerDiv{
+    background-color: white;
+    height: 6vh;
+    width: 100vw;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #2E0052;
+    position: absolute;
+    font-size: 0.8rem;
+    border-top: 1px solid #C8C8C8;
+}
+
+.headerDiv span{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerDiv img{
+    height: 50%;
+    width: 60%;
+}
+
+.selected{
+    border: 2px solid #2E0052;
+    width: 9vw;
+    margin-bottom: 8%;
+    position: absolute;
+    margin-bottom: 7vh;
+}
+
+.count{
+    position: absolute;
+    height: 35%;
+    width: 6%;
+    border-radius: 50%;
+    background-color: #2DAD00;
+    color: white;
+    margin-bottom: 8%;
+    margin-left: 7%;
+    text-align: center;
+}

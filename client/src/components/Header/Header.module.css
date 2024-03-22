@@ -1,6 +1,6 @@
 .headerDiv{
     background-color: #2E0052;
-    height: 5vh;
+    height: 4vh;
     width: 97vw;
     top: 0;
     display: flex;
@@ -9,11 +9,12 @@
     color: white;
     padding: 0% 1% 0% 2%;
     position: static;
+    font-size: 0.8rem;
 }
 
 .headerDiv img{
-    height: 12%;
-    width: 15%;
+    height: 10%;
+    width: 13%;
 }
 
 .btns span{
