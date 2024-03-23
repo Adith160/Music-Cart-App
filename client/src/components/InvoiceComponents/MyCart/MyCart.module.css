@@ -1,0 +1,84 @@
+.mainDiv {
+    width: 90%;
+    max-height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5%;
+}
+
+.leftDiv{
+    max-height: 80%;
+    width: 70%;
+}
+
+.leftTop{
+    max-height: 48vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border-top: 1px  solid #E1E1E1;
+    border-bottom: 1px  solid #E1E1E1;
+}
+
+.leftDown{
+    height: 15%;
+    margin-left: 35%;
+    margin-top: 1%;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+.leftTop::-webkit-scrollbar {
+    display: none;
+}
+
+.summaryDiv{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 3% 0%;
+    font-weight: 500;
+    border-left: 1px  solid #E1E1E1;
+}
+
+.summary{
+    height: 40vh;
+    width: 90%;
+    margin-top: 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.summary span{
+    font-size: 0.9rem;
+}
+
+.amount{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.total{
+ margin-top: 25%;
+ width: 100%;
+}
+
+.viewInvoice {
+    width: 65%;
+    height: 5vh;
+    margin: 5% 0 0 7%;
+    border-radius: 1vh;
+    background-color: #FFD600;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+

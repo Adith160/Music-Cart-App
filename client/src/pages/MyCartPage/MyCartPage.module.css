@@ -66,21 +66,16 @@ body {
     text-align: center;
     font-size: 1.3rem;
     font-weight: 600;
-    margin-top: 2%;
-}
-
-.bagIcon{
-    height: 3.8vh;
-    margin-right: 0.2%;
+    margin-top: 3%;
 }
 
 .mainContainer{
-    height: 64vh;
+    height: 60vh;
     width: 93%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1% 0 0 2.5%;
+    margin: 2% 0 0 2.5%;
     overflow-x: hidden;
     overflow-y: scroll;
 }
