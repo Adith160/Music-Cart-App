@@ -1,6 +1,110 @@
-body{
+body {
     position: relative;
-    background-color: white;
     height: 100vh;
     width: 100vw;
 }
+
+.topDiv{
+    width: 93%;
+    margin-top: 1%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2E0052;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2E0052;
+    font-size: 1.3rem;
+    font-weight: 500;
+    width: 30%;
+    margin-left: 2%;
+}
+
+.logo img {
+    max-width: 9%;
+}
+
+.logo span{
+    font-size: 0.9rem;
+    margin-left: 5%;
+}
+
+.profileDiv{
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dpDiv{
+    border-radius: 50%;
+    border: 1px solid #2E0052;
+    width: 22%;
+    height: 5.2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    margin-top: 17vh;
+    width: 15vw;
+    height: 10vh;
+    font-weight: 500;
+    font-size: 1.1rem;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1vh;
+}
+  
+
+.dropdown span{
+    /* height: 8vh; */
+}
+
+.viewCart{
+    background-color: #1D7000;
+    width: 65%;
+    height: 4.5vh;
+    border-radius: 2vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+    cursor: pointer;
+}
+
+.viewCart img{
+    height: 65%;
+    margin-right: 4%;
+}
+
+.mainContainer{
+    height: 60vh;
+    width: 93%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2% 0 0 2.5%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.mainContainer::-webkit-scrollbar {
+    display: none;
+}
+

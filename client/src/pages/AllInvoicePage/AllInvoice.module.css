@@ -74,6 +74,19 @@ body {
     margin-right: 0.2%;
 }
 
+.backImg{
+    width: 7%;
+    height: 3vh;
+    border-radius: 50%;
+    border: 1px solid #828282;
+    margin-left: 5%;
+    margin-top: 2%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .mainContainer{
     height: 64vh;
     width: 93%;

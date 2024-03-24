@@ -2,9 +2,8 @@
     width: 90%;
     max-height: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 5%;
+    justify-content: space-around;
+    margin: 1% 0 0 5%;
 }
 
 .leftDiv{
@@ -13,12 +12,7 @@
 }
 
 .leftTopDiv{
-    max-height: 51vh;
-    overflow-y: scroll;
-}
-
-.leftTopDiv::-webkit-scrollbar {
-    display: none;
+    max-height: 98vh;
 }
 
 .subDiv{
@@ -60,7 +54,7 @@ option{
 
 .subDiv3{
     width: 90%;
-    max-height: 28vh;
+    max-height: 75vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -71,7 +65,7 @@ option{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1% 4% 1% 0%;
+    margin: 1% 4% 0% 0%;
 }
 
 .valueTopDiv{
@@ -121,29 +115,48 @@ option{
     border-radius: 1vh;
     font-size: 0.9rem;
     overflow-y: scroll;
+    padding: 1%;
 }
 
 .valueDiv p::-webkit-scrollbar {
     display: none;
 }
 
+.valueBottomDiv{
+    margin: 8% 0% 8% -12%;
+}
+
+.valueBottomDiv p{
+    max-height: 45%;
+    width: 100%;
+    border: none;
+    font-size: 0.9rem;
+    color: black;
+    font-weight: 500;
+}
+
+
 .leftBottomDiv{
-    border-top: 1px solid #cfcdcd;
-    margin-top: 1.5%;
+    margin-top: 1%;
+    max-width: 100%;
+    height: 7.5vh;
+    padding: 1%;
 }
 
 .bottomDiv{
     display: flex;
     width: 90%;
-    justify-content: space-between;
+    height: 100%;
+    justify-content: space-around;
     align-items: center;
-    border: 1px solid #cfcdcd;
+    border: 2px solid #cfcdcd;
     border-radius: 1vh;
 }
 
 .bottomDiv button{
-    width: 39%;
-    height: 4vh;
+    width: 32%;
+    height: 4.5vh;
+    margin-top: 0%;
     border-radius: 1vh;
     background-color: #FFD600;
     border: none;
@@ -154,20 +167,132 @@ option{
 }
 
 .summaryDiv{
-    width: 25%;
-    height: 100%;
-    border: 1px  solid #E1E1E1;
+    width: 23%;
+    max-height: 60%;
+    border: 3px  solid #E1E1E1;
+    border-radius: 1vh;
+    display: flex;
+    justify-content: center;
+    padding: 1% 0;
 }
 
-.viewInvoice {
-    width: 65%;
-    height: 5vh;
-    margin: 5% 0 0 7%;
+.orderBtn{
+    width: 95%;
+    height: 14%;
     border-radius: 1vh;
     background-color: #FFD600;
     border: none;
     color: black;
     cursor: pointer;
-    font-weight: 700;
-    font-size: 0.8rem;
+    font-weight: 600;
+    font-size: 1rem;
 }
+
+.summary{
+    width: 95%;
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.summary p{
+    font-size: 0.6rem;
+    text-align: center;
+    width: 92%;
+}
+
+.orderDiv{
+    width: 90%;
+    font-size: 0.9rem;
+    max-height: 40%;
+    border-top: 1px solid #cfcdcd;
+    border-bottom: 1px solid #cfcdcd;
+    padding: 5% 0;
+}
+
+h3{
+    padding: 0;
+    margin: 0;
+    margin-bottom: 3%;
+}
+
+.spanStyle{
+    color: #797979;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+    .mainDiv {
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      overflow-y: scroll;
+      max-height: 95%;
+    }
+
+    .leftDiv {
+      width: 90%;
+      margin-bottom: -15%;
+    }
+  
+    .subDiv,
+    .subDiv2,
+    .subDiv3 {
+      width: 100%;flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-start;
+      margin-bottom: 5%;
+    }
+
+    .subDiv p{
+        border: none;
+    }
+  
+    .imageDiv {
+      width: 25%;
+      height: 15%;
+    }
+  
+    .valueDiv {
+      width: 80%;
+    }
+
+    .valueBottomDiv{
+        margin: 0;
+    }
+
+    .valueBottomDiv p{
+        margin: 0;
+    }
+  
+    .bottomDiv {
+      flex-direction: column;
+      align-items: center;
+      display: none;
+    }
+  
+    .bottomDiv button {
+      width: 70%;
+      margin-top: 5%;
+    }
+  
+    .summaryDiv {
+      width: 90%;
+      border: none;
+      margin: 0;
+    }
+
+    .orderDiv{
+        border: none;
+    }
+
+    .orderBtn{
+        height: 3vh;
+    }
+  }
+  

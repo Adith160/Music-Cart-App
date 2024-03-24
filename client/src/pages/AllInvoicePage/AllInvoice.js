@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import cartIcon from "../../assets/Icons/Cart2.png";
 import fileIcon from "../../assets/Icons/File2.png";
 import bagIcom from '../../assets/Icons/Bag.png'
+import backIcon from '../../assets/Icons/Back.png'
 import { useLocation } from "react-router-dom";
 
 function AllInvoice() {
@@ -64,7 +65,8 @@ function AllInvoice() {
     
         {page === "MyInvoice" && (
           <>
-            <div className={styles.heading}>
+          {isMobile &&  <div className={styles.backImg}> <img src={backIcon} alt="file" /> </div>}
+           <div className={styles.heading}>
               {isMobile && <img src={fileIcon} alt="file" />} My Invoices
             </div>
 
@@ -76,6 +78,7 @@ function AllInvoice() {
 
         {page === "MyCart" && (
           <>
+          {isMobile &&  <div className={styles.backImg}> <img src={backIcon} alt="file" /> </div>}
             <div className={styles.heading}>
               <img src={bagIcom} alt="bag" className={styles.bagIcon}/> My Cart
             </div>
@@ -88,12 +91,30 @@ function AllInvoice() {
 
         {page === "Invoice" && (
           <>
+         {isMobile &&  <div className={styles.backImg}> <img src={backIcon} alt="file" /> </div>}
+           
             <div className={styles.heading}>
-              {isMobile && <img src={fileIcon} alt="file" />} <u>Checkout</u>
+             <u>Invoice</u>
             </div>
 
-            <div className={styles.mainContainer}>
-              <Invoice />
+            <div className={styles.mainContainer} style={isMobile? {height:'90vh', overflowY:'scroll'}:{}}>
+              <Invoice view={'view'}/>
+            </div>
+          </>
+        )}
+
+        {page === "Checkout" && (
+          <>
+           
+          {isMobile &&  <div className={styles.backImg}> <img src={backIcon} alt="file" /> </div>}
+          
+          
+          <div className={styles.heading}>
+              <u>Checkout</u>
+            </div>
+
+            <div className={styles.mainContainer} style={isMobile? {height:'90vh', overflowY:'scroll'}:{}}>
+              <Invoice view={'edit'}/>
             </div>
           </>
         )}
