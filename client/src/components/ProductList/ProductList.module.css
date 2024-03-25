@@ -1,0 +1,53 @@
+.mainDiv {
+    height: auto;
+    width: 100%;
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.imgDiv {
+    width: 16%;
+    height: 35vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D4E5FF;
+    box-sizing: border-box;
+    margin-left: 5%;
+    position: relative;
+}
+
+.image {
+    width: 80%;
+    height: 100%;
+    height: auto;
+}
+
+.buy{
+    position: absolute;
+    bottom: 12%;
+    right: 10%;
+    height: 17%;
+    cursor: pointer;
+}
+
+.rightDiv {
+    width: 77%;
+    height: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.rightDiv span {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: -5vh 0;
+    text-align: center;
+    text-align: left;
+    width: 80%;
+}

@@ -43,8 +43,8 @@ body {
 .dpDiv{
     border-radius: 50%;
     border: 1px solid #2E0052;
-    width: 22%;
-    height: 5.2vh;
+    width: 24%;
+    height: 6.5vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,7 +58,7 @@ body {
     position: absolute;
     margin-top: 17vh;
     width: 15vw;
-    height: 10vh;
+    height: 8vh;
     font-weight: 500;
     font-size: 1.1rem;
     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
@@ -68,6 +68,7 @@ body {
     justify-content: space-around;
     align-items: center;
     padding: 1vh;
+    background-color: white;
 }
   
 
@@ -93,18 +94,143 @@ body {
     margin-right: 4%;
 }
 
-.mainContainer{
-    height: 60vh;
+.topDownDiv{
+    height: 22vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2%
+}
+
+.insideDiv{
+    height: 100%;
+    width: 90%;
+    background: linear-gradient(to right, #7286B4 05%, #E794CE 95%);
+    border-radius: 2vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.insideDiv img{
+    position: static;
+    height: 27vh;
+    width: 23%;
+    margin-top: -5vh;
+}
+
+.insideDiv span{
+    width: 40%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.searchDiv{
+    width: 90%;
+    margin: 1% 0 0 5%;
+    height: 6vh;
+    border: 2px solid #C8C8C8;
+    border-radius: 4vh;
+    display: flex;
+    align-items: center;
+}
+
+.searchDiv img{
+    height: 70%;
+    margin-left: 3%;
+}
+
+.searchDiv input{
+    border: none;
+    width: 90%;
+    height: 90%;
+    font-size: 1rem;
+}
+
+.searchDiv input:focus {
+    outline: none; 
+}
+
+.filterDiv{
+    width: 90%;
+    height: 6vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1%;
+}
+
+.filterDiv select{
+    height: 65%;
+    font-size: 0.8rem;
+    border-radius: 2vh;
+    max-width: 9%;
+    font-weight: 600;
+    text-align: center;
+}
+
+.filters{
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 3%;
+    height: 100%;
+}
+
+.filters select{
+    background-color: #C8C8C8;
+    border: none;
+}
+
+.menu{
+    width: 8%;
+    display: flex;
+    margin-right: 2%;
+}
+
+.menu img{
+    height: 4.5vh;
+    cursor: pointer;
+}
+
+.feedbackDIv{
+    height: 9%;
+    width: 4.5%;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 5vh;
+    right: 16vh;
+    background-color: white;
+    box-shadow: 2px 2px 10px 1px #919191;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.feedbackDIv img{
+    height: 50%;
+    width: 50%;
+}
+
+.mainContainer {
+    height: 32vh;
     width: 93%;
     display: flex;
-    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
-    margin: 2% 0 0 2.5%;
+    flex-wrap: wrap;
+    margin: 1% 0 0 3.7%;
     overflow-x: hidden;
     overflow-y: scroll;
+    gap: 25% 0; /* Adjust the value to set the desired space between each div */
 }
+
 
 .mainContainer::-webkit-scrollbar {
     display: none;
 }
+
 

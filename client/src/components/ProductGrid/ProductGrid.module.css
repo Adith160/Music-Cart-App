@@ -1,0 +1,33 @@
+.mainDiv{
+    height: 40vh;
+    width: 21%;
+}
+
+.imgDiv{
+    height: 35vh;
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D4E5FF;
+    position: relative;
+}
+
+.image{
+    width: 80%;
+    height: 80%;
+}
+
+.buy{
+    position: absolute;
+    bottom: 12%;
+    right: 10%;
+    height: 17%;
+    cursor: pointer;
+}
+
+.mainDiv span{
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-left: 4%;
+}
