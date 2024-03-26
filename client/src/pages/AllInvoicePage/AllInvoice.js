@@ -19,7 +19,7 @@ function AllInvoice() {
   const location = useLocation();
   const { state } = location;
   let page = state && state.page;
-  page = "Invoice";
+  page = "MyCart";
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600);
