@@ -1,25 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./FeedBack.module.css";
+import { createFeedback } from "../../api/feedback";
+import { toast } from "react-toastify";
 
 function FeedBack() {
+  const [type, setType] = useState("");
+  const [feedbackText, setFeedbackText] = useState("");
+
+  const handleTypeChange = (event) => {
+    setType(event.target.value);
+  };
+
+  const handleFeedbackChange = (event) => {
+    setFeedbackText(event.target.value);
+  };
+
+  const handleSubmit = async () => {
+    if (!type || !feedbackText) {
+      toast.error("Please select type and provide feedback.");
+      return;
+    }
+
+    try {
+      await createFeedback({ type, feedback: feedbackText });
+      toast.success("Feedback submitted successfully!");
+      setType("");
+      setFeedbackText("");
+    } catch (error) {
+      toast.error("Please try again later.");
+    }
+  };
+
   return (
     <div className={styles.mainDiv}>
       <div>
-      <span>Type of feedback</span>
-      <select id="type">
-        <option value="" disabled selected>Choose the type</option>
-        <option value="a">Bugs</option>
-        <option value="b">Feedback</option>
-        <option value="b">Query</option>
-      </select>
+        <span>Type of feedback</span>
+        <select id="type" value={type} onChange={handleTypeChange}>
+          <option value="" disabled>Select the type</option>
+          <option value="Bugs">Bugs</option>
+          <option value="Feedback">Feedback</option>
+          <option value="Query">Query</option>
+        </select>
       </div>
       
-      <div>
-      <span>Feedback</span>
-      <p contenteditable="true">Type your feedback</p>
+      <div className={styles.textArea}>
+        <span>Feedback</span>
+        <textarea 
+          value={feedbackText} 
+          onChange={handleFeedbackChange} 
+          placeholder="Type your feedback"
+          rows={4} 
+          cols={50} 
+        />
       </div>
       
-      <button>Submit</button>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }

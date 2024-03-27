@@ -10,7 +10,7 @@ export const registerUser = async ({ name, mobile, email, password }) => {
     const response = await axios.post(reqUrl, reqPayload);
     return response.data;
   } catch (error) {
-    if (error.response.data.message) {
+    if (error.response && error.response.data) {
       toast.error(error.response.data.message);
     } else {
       toast.error("Invalid request!");
@@ -28,7 +28,7 @@ export const loginUser = async ({ credential, password }) => {
 
     if (response.status === 201) return response.data;
   } catch (error) {
-    if (error.response.data.message) {
+    if (error.response && error.response.data) {
       toast.error(error.response.data.message);
     } else {
       toast.error("Invalid request!");

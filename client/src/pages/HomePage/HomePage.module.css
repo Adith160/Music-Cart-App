@@ -56,9 +56,9 @@ body {
 
 .dropdown {
     position: absolute;
-    margin-top: 17vh;
+    margin-top: 19vh;
     width: 15vw;
-    height: 8vh;
+    height: 10vh;
     font-weight: 500;
     font-size: 1.1rem;
     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
@@ -69,11 +69,6 @@ body {
     align-items: center;
     padding: 1vh;
     background-color: white;
-}
-  
-
-.dropdown span{
-    /* height: 8vh; */
 }
 
 .viewCart{

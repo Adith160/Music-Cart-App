@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import styles from "./Login.module.css";
 import logo from "../../assets/Icons/logo.png";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../api/auth";
+import { toast } from "react-toastify";
 
 function Login() {
   const [isMobile, setIsMobile] = useState(false);
 
   const [userData, setUserData] = useState({
-    email: "",
-    password: "",
-  });
-  const [errors, setErrors] = useState({
-    email: "",
+    credential: "",
     password: "",
   });
 
@@ -35,42 +33,27 @@ function Login() {
       ...prevData,
       [name]: value,
     }));
-
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: "",
-    }));
-  };
+};
   const handleUserSubmit = async (e) => {
     e.preventDefault();
 
-    const newErrors = {};
-
-    if (userData.email.trim() === "") {
-      newErrors.email = "Field Is Required";
-    }
-    if (userData.password.trim() === "") {
-        newErrors.password = "Field Is Required";
-      }
-
-    setErrors(newErrors);
-
-    const resetForm = () => {
+   const resetForm = () => {
       setUserData({
-        email: "",
+        credential: "",
         password: "",
       });
     };
 
-    if (Object.keys(newErrors).length === 0) {
-      // const response = await registerUser({ ...userData });
-      // if (response) {
-      //   localStorage.setItem("token", response.token);
-      //   localStorage.setItem("name", response.name);
-      resetForm();
-      //   navigate("/dashboard");
-      // }
-      console.log("jaii");
+    if (userData.credential !== '' && userData.password !== '') {
+      const response = await loginUser({ ...userData });
+      if (response) {
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("name", response.name);
+        resetForm();
+        navigate("/homepage");
+      }
+    } else {
+      toast.error("Please fill all fields");
     }
   };
   return (
@@ -91,22 +74,18 @@ function Login() {
         <form onSubmit={handleUserSubmit} autoComplete="off">
           <label>Enter your email or mobile number</label>
           <input
-            name="email"
+            name="credential"
             type="text"
-            value={userData.email}
+            value={userData.credential}
             onChange={handleOnChange}
           ></input>
-          {errors.email && <div className={styles.errorText}>{errors.email}</div>}
-
+          
           <label>Password</label>
           <input
             name="password"
             value={userData.password}
             onChange={handleOnChange}
           ></input>
-          {errors.password && (
-            <div className={styles.errorText}>{errors.password}</div>
-          )}
         
           <button className={styles.submitBtn} type="submit">
             Continue

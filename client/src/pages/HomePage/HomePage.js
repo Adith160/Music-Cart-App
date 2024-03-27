@@ -22,10 +22,12 @@ function HomePage() {
   const [ShowDP, setShowDP] = useState(false);
   const [ShowFeedback, setShowFeedback] = useState(false);
   const [ShowList, setShowList] = useState(false);
+  const [IsLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600);
+      setIsLogin(!!localStorage.getItem("name"));
     };
 
     handleResize();
@@ -41,6 +43,21 @@ function HomePage() {
   const handleShowDpClick = () => {
     setShowDP(!ShowDP);
   };
+
+  const toggleLogout=(e)=>{
+    e.stopPropagation()
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    navigate("/login");
+  }
+
+  const handleViewCartClick = ()=>{
+    if(!IsLogin){
+      navigate('/login');
+    }else{
+      navigate('/AllInvoice', {state:{page:'MyCart'}})
+    }
+  }
   return (
     <>
       <Header />
@@ -52,24 +69,25 @@ function HomePage() {
               Music Cart
               <span>Home / Invoices</span>
             </div>
+            {IsLogin && 
             <div className={styles.profileDiv}>
-              <span className={styles.viewCart}>
-                <img src={cartIcon} alt="cart" />
-                View Cart
-              </span>
-              <div className={styles.dpDiv} onClick={() => handleShowDpClick()}>
-                AK
-                {ShowDP && (
-                  <div className={styles.dropdown}>
-                    <span onClick={(e) => e.stopPropagation()}>
-                      Nameuu biaciciiaci
-                    </span>
-                    <br />
-                    <span>Logout</span>
-                  </div>
-                )}
-              </div>
+            <span className={styles.viewCart} onClick={()=>handleViewCartClick()}>
+              <img src={cartIcon} alt="cart" />
+              View Cart
+            </span>
+            <div className={styles.dpDiv} onClick={handleShowDpClick}>
+              AK
+              {ShowDP && (
+                <div className={styles.dropdown}>
+                  <span onClick={(e) => e.stopPropagation()}>
+                    Nameuu biaciciiaci
+                  </span>
+                  <br />
+                  <span onClick={toggleLogout}>Logout</span>
+                </div>
+              )}
             </div>
+          </div>}
           </div>
         </>
       )}

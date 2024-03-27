@@ -1,7 +1,7 @@
 .mainDiv {
     position: absolute;
     bottom: 17vh;
-    right: 5vh;
+    right: 4vh;
     height: 45vh;
     width: 17vw;
     border: none;
@@ -26,15 +26,19 @@
     font-size: 0.7rem;
 }
 
-.mainDiv p{
+.mainDiv textarea{
     height: 15vh;
-    width: 15vw;
+    width: 14vw;
     border: 1px solid #919191;
-    margin: 1% 0% 0% 0%;
+    margin: 1% 0% 0% 2%;
     font-weight: 400;
     padding: 1%;
     font-size: 0.8rem;
     color: #919191;
+}
+
+.textArea{
+    width: 86%;
 }
 
 .mainDiv span{

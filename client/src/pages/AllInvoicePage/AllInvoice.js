@@ -18,8 +18,8 @@ function AllInvoice() {
   const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
   const { state } = location;
-  let page = state && state.page;
-  page = "MyCart";
+  const page = state && state.page;
+  //page = "MyCart";
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600);
@@ -53,12 +53,12 @@ function AllInvoice() {
           <button
             className={styles.backBtn}
             onClick={() =>
-              navigate("/HomePage", {
+              navigate("/product", {
                 state: { prop1: "value1", prop2: "value2" },
               })
             }
           >
-            Back to Home
+            Back to products
           </button>
         </>
       )}

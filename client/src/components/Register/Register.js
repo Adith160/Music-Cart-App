@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./Register.module.css";
 import logo from "../../assets/Icons/logo.png";
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../api/auth";
+import { toast } from "react-toastify";
 
 function Register() {
   const [isMobile, setIsMobile] = useState(false);
@@ -12,13 +14,6 @@ function Register() {
     email: "",
     password: "",
   });
-  const [errors, setErrors] = useState({
-    name: "",
-    mobile: "",
-    email: "",
-    password: "",
-  });
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600);
@@ -39,53 +34,41 @@ function Register() {
       ...prevData,
       [name]: value,
     }));
-
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: "",
-    }));
   };
   const handleUserSubmit = async (e) => {
     e.preventDefault();
-
-    const newErrors = {};
-    if (userData.name.trim() === "") {
-      newErrors.name = "Field Is Required";
+  
+    const mobileRegex = /^\d{10}$/;
+    if (!mobileRegex.test(userData.mobile)) {
+      toast.error("Please enter a valid 10-digit mobile number");
+      return;
     }
-
-    if (userData.password.trim() === "") {
-      newErrors.password = "Field Is Required";
+  
+    // Check if other fields are filled
+    if (
+      userData.name.trim() === '' ||
+      userData.email.trim() === '' ||
+      userData.password.trim() === ''
+    ) {
+      toast.error("Please check all fields");
+      return;
     }
-
-    if (userData.email.trim() === "") {
-      newErrors.email = "Field Is Required";
-    }
-    if (userData.password.trim() === "") {
-      newErrors.password = "Field Is Required";
-    }
-
-    setErrors(newErrors);
-
-    const resetForm = () => {
+  
+    const response = await registerUser({ ...userData });
+    if (response) {
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("name", response.name);
       setUserData({
         name: "",
+        mobile: "",
         email: "",
         password: "",
-        password2: "",
       });
-    };
-
-    if (Object.keys(newErrors).length === 0) {
-      // const response = await registerUser({ ...userData });
-      // if (response) {
-      //   localStorage.setItem("token", response.token);
-      //   localStorage.setItem("name", response.name);
-      resetForm();
-      //   navigate("/dashboard");
-      // }
-      console.log("jaii");
+      navigate("/homepage");
     }
   };
+  
+  
   return (
     <div className={styles.mainDiv}>
       {isMobile ? (
@@ -109,18 +92,14 @@ function Register() {
             value={userData.name}
             onChange={handleOnChange}
           ></input>
-          {errors.name && <div className={styles.errorText}>{errors.name}</div>}
-
+        
           <label>Mobile Number</label>
           <input
-            name="name"
+            name="mobile"
             type="number"
             value={userData.mobile}
             onChange={handleOnChange}
           ></input>
-          {errors.mobile && (
-            <div className={styles.errorText}>{errors.mobile}</div>
-          )}
 
           <label>Email Id</label>
           <input
@@ -129,19 +108,15 @@ function Register() {
             value={userData.email}
             onChange={handleOnChange}
           ></input>
-          {errors.email && (
-            <div className={styles.errorText}>{errors.email}</div>
-          )}
 
           <label>Password</label>
           <input
             name="password"
+            type="password"
             value={userData.password}
             onChange={handleOnChange}
           ></input>
-          {errors.password && (
-            <div className={styles.errorText}>{errors.password}</div>
-          )}
+
           <p style={{ fontSize: "0.7rem" }}>
             By enrolling your mobile phone number, you consent to receive
             automated security notifications via text message from Musicart.
