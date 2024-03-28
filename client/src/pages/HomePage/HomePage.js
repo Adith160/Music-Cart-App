@@ -16,6 +16,7 @@ import cartIcon from "../../assets/Icons/Cart2.png";
 import FeedBack from "../../components/FeedBack/FeedBack";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
 import ProductList from "../../components/ProductList/ProductList";
+import { getAllProducts } from "../../api/product";
 
 function HomePage() {
   const [isMobile, setIsMobile] = useState(false);
@@ -23,8 +24,32 @@ function HomePage() {
   const [ShowFeedback, setShowFeedback] = useState(false);
   const [ShowList, setShowList] = useState(false);
   const [IsLogin, setIsLogin] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [headphoneTypes, setHeadphoneTypes] = useState([]);
+  const [headphoneCompanies, setHeadphoneCompanies] = useState([]);
+  const [headphoneColors, setHeadphoneColors] = useState([]);
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productsData = await getAllProducts();
+        setProducts(productsData);
+
+        // Extracting unique types, companies, and colors from productsData
+        const types = [...new Set(productsData.map(product => product.type))];
+        const brand = [...new Set(productsData.map(product => product.brand))];
+        const colors = [...new Set(productsData.map(product => product.color))];
+
+        setHeadphoneTypes(types);
+        setHeadphoneCompanies(brand);
+        setHeadphoneColors(colors);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchData();
+    
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600);
       setIsLogin(!!localStorage.getItem("name"));
@@ -142,28 +167,35 @@ function HomePage() {
             </div>
           )}
 
-          <select id="headphoneType" style={{ maxWidth: "19%" }}>
+<select id="headphoneType" style={{ maxWidth: "19%" }}>
             <option value="" disabled selected>
               Headphone type
             </option>
-            <option value="a">Option A</option>
-            <option value="b">Option B</option>
+            {headphoneTypes.map(type => (
+              <option key={type} value={type}>{type}</option>
+            ))}
           </select>
 
+          {/* Select dropdown for headphone companies */}
           <select id="headphoneComp" style={{ maxWidth: "14%" }}>
             <option value="" disabled selected>
               Company
             </option>
-            <option value="a">Option A</option>
-            <option value="b">Option B</option>
+            {headphoneCompanies.map(company => (
+              <option key={company} value={company}>{company}</option>
+            ))}
           </select>
-          <select id="headphoneType" style={{ maxWidth: "12%" }}>
+
+          {/* Select dropdown for headphone colors */}
+          <select id="headphoneColor" style={{ maxWidth: "12%" }}>
             <option value="" disabled selected>
               Colour
             </option>
-            <option value="a">Option A</option>
-            <option value="b">Option B</option>
+            {headphoneColors.map(color => (
+              <option key={color} value={color}>{color}</option>
+            ))}
           </select>
+
           <select id="headphoneColor" style={{ maxWidth: "13%" }}>
             <option value="" disabled selected>
               Price
@@ -172,6 +204,7 @@ function HomePage() {
             <option value="b">Option B</option>
           </select>
         </div>
+
         <select id="sortBy" style={{ maxWidth: "18%" }}>
           <option value="" disabled selected>
             Sort by : Featured
@@ -183,19 +216,35 @@ function HomePage() {
         </select>
       </div>
 
-      {!ShowList ? (
+       {!ShowList ? (
         <div className={styles.mainContainer}>
-          <ProductGrid />
-          <ProductGrid />
-          <ProductGrid />
-          <ProductGrid />
+          {/* ProductGrid component */}
+          {products.map(product => (
+            <ProductGrid
+              key={product.id}
+              image={product.images1}
+              name={product.name}
+              desc={product.desc}
+              price={product.price}
+              type={product.type}
+              color={product.color}
+            />
+          ))}
         </div>
       ) : (
         <div className={styles.mainContainer}>
-          <ProductList />
-          <ProductList />
-          <ProductList />
-          <ProductList />
+          {/* ProductList component */}
+          {products.map(product => (
+            <ProductList
+              key={product.id}
+              image={product.images1}
+              name={product.name}
+              desc={product.about}
+              price={product.price}
+              type={product.type}
+              color={product.color}
+            />
+          ))}
         </div>
       )}
 

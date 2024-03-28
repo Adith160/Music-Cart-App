@@ -1,19 +1,9 @@
 const { Product, productValidation } = require("../models/productModel");
 
-const getAllProductsByColor = async (req, res) => {
+const getAllProducts = async (req, res) => {
   try {
-    const { color } = req.query;
-    let query = {};
+    const products = await Product.find();
 
-    // If color is specified and not 'all', add it to the query
-    if (color && color !== 'all') {
-      query.color = color;
-    }
-
-    // Fetch products based on the query
-    const products = await Product.find(query);
-
-    // Send the extracted product data as a response
     return res.status(200).json({
       message: "Products retrieved successfully",
       data: products,
@@ -83,4 +73,4 @@ const getProductById = async (req, res) => {
     }
   };
 
-module.exports = { getAllProductsByColor, getProductById, createProduct };
+module.exports = { getAllProducts, getProductById, createProduct };

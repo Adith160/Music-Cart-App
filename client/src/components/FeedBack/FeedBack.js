@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./FeedBack.module.css";
 import { createFeedback } from "../../api/feedback";
 import { toast } from "react-toastify";
+// import imgs from ''
 
 function FeedBack() {
   const [type, setType] = useState("");
@@ -33,7 +34,7 @@ function FeedBack() {
 
   return (
     <div className={styles.mainDiv}>
-      <div>
+      <div className={styles.topdiv}>
         <span>Type of feedback</span>
         <select id="type" value={type} onChange={handleTypeChange}>
           <option value="" disabled>Select the type</option>

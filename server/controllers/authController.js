@@ -39,46 +39,49 @@ const register = async(req, res) =>{
 };
 
 const login = async (req, res) => {
-    try {
-      const { credential, password } = req.body;
-      if (!credential || !password) {
-        return res
-          .status(409)
-          .json({ message: "Invalid Credentials", success: false });
-      }
-  
-      let userDetail = await User.findOne({ email :credential });
-      if (!userDetail) {
-        userDetail = await User.findOne({ mobile :credential });
-      }
-
-      if(!userDetail){
-        return res
-          .status(400)
-          .json({ message: "User Not Found", success: false });
-      }
-  
-      const passwordCheck = await bcrypt.compare(password, userDetail.password);
-      if (!passwordCheck) {
-        return res
-          .status(400)
-          .json({ message: "Invalid Password", success: false });
-      }
-      const token = await jwt.sign(
-        { userId: userDetail._id },
-        process.env.JWT_SECRET
-      );
-      res
-        .status(201)
-        .json({
-          message: "User Login Successful",
-          token: token,
-          name: userDetail.name,
-          success: true,
-        });
-    } catch (error) {
-      res.status(500).json({ error: "Internal Server Error", success: false });
+  try {
+    const { credential, password } = req.body;
+    if (!credential || !password) {
+      return res
+        .status(409)
+        .json({ message: "Invalid Credentials", success: false });
     }
-  };
+
+    let userDetail;
+    if (!isNaN(credential)) {
+      userDetail = await User.findOne({ mobile: credential });
+    } else {
+      userDetail = await User.findOne({ email: credential });
+    }
+
+    if (!userDetail) {
+      return res
+        .status(400)
+        .json({ message: "User Not Found", success: false });
+    }
+
+    const passwordCheck = await bcrypt.compare(password, userDetail.password);
+    if (!passwordCheck) {
+      return res
+        .status(400)
+        .json({ message: "Invalid Password", success: false });
+    }
+    const token = await jwt.sign(
+      { userId: userDetail._id },
+      process.env.JWT_SECRET
+    );
+    res
+      .status(201)
+      .json({
+        message: "User Login Successful",
+        token: token,
+        name: userDetail.name,
+        success: true,
+      });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error", success: false });
+  }
+};
+
 
   module.exports = {register, login};

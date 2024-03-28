@@ -3,8 +3,20 @@ const Schema = mongoose.Schema;
 const Joi = require("joi");
 
 const productSchema = new Schema({
-    images: {
-        type: [String],
+    images1: {
+        type: String,
+        required: true,
+    },
+    images2: {
+        type: String,
+        required: true,
+    },
+    images3: {
+        type: String,
+        required: true,
+    },
+    images4: {
+        type: String,
         required: true,
     },
     name: {
@@ -45,7 +57,10 @@ const productSchema = new Schema({
 });
 
 const productValidationSchema = Joi.object({
-    images: Joi.array().items(Joi.string()).min(1).required(),
+    images1: Joi.string().required(),
+    images2: Joi.string().required(),
+    images3: Joi.string().required(),
+    images4: Joi.string().required(),
     name: Joi.string().required(),
     price: Joi.number().positive().required(),
     color: Joi.string().required(),

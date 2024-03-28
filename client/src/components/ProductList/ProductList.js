@@ -1,22 +1,20 @@
 import React from "react";
 import styles from "./ProductList.module.css";
-import image1 from "../../assets/Images/product1.png";
 import buyIcon from '../../assets/Icons/BuyIcon.png';
 
-function ProductList() {
+function ProductList(props) {
   return (
     <div className={styles.mainDiv}>
       <div className={styles.imgDiv}>
-        <img src={image1} alt="img" className={styles.image} />
+        <img src={props.image} alt="img" className={styles.image} />
         <img src={buyIcon} alt="img" className={styles.buy}/>
       </div>
 
       <div className={styles.rightDiv}>
-        <span style={{fontWeight:'800', fontSize:'1rem'}}>boAt Rockerz 551ANC </span> <br />
-        <span>Price -  &#8377; 3,000 </span> <br />
-        <span>Blue | On-ear headphone</span> <br />
-        <span>boAt Rockerz 551 ANC with Hybrid ANC, 100 HRS Playback, 40mm Drivers & ASAP Charge
-Bluetooth Headset (Stellar Black, On the Ear) </span>
+        <span style={{fontWeight:'800', fontSize:'1rem'}}>{props.name}  </span> <br />
+        <span>Price -  &#8377; {props.price} </span> <br />
+        <span>{props.color}  | {props.type} </span> <br />
+        <span>{props.desc} </span>
       </div>
     </div>
   );

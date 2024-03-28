@@ -2,17 +2,19 @@ import axios from "axios";
 import { toast } from "react-toastify";
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-//api for user registration
-export const createFeedback = async ({ type, feedback }) => {
+//getAllProducts
+export const getAllProducts = async () => {
   try {
-    const reqUrl = `${backendUrl}/product/v1/getAllProductsByColor`;
-    const reqPayload = { type, feedback };
-    const token = localStorage.getItem("token");
-    if (token) {
-      axios.defaults.headers.common["Authorization"] = token;
-    }
-    const response = await axios.post(reqUrl, reqPayload);
-    return response.data;
+    debugger;
+    // const reqUrl = `${backendUrl}/product/v1/getAllProducts`;
+    // const response = await axios.get(reqUrl);
+    // return response.data;
+
+    const response = await axios.get(`${backendUrl}/product/v1/getAllProducts`);
+    if (response.status === 200) {
+      return response.data.data; // Assuming your products are nested under 'data' key
+    } 
+
   } catch (error) {
     if (error.response && error.response.data) {
       toast.error(error.response.data.message);
