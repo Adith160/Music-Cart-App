@@ -8,37 +8,73 @@ const invoiceSchema = new Schema({
         ref: 'User', 
         required: true,
     },
-    product_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'Product', 
-        required: true,
-    },
     address: {
         type: String,
-        required: true,
+    },
+    placed: {
+        type: Boolean,
+        default: false,
     },
     paymentType: {
         type: String,
-        required: true,
     },
-    quantity: {
+    totQty: {
         type: Number,
-        required: true,
     },
-    total: {
+    discount: {
         type: Number,
-        required: true,
     },
+    grandtotal: {
+        type: Number,
+    },
+    products: [{
+        product_id: {
+            type: Schema.Types.ObjectId,
+            ref: 'Product', 
+            required: true,
+        }, 
+        name: {
+            type: String,
+            required: true,
+        },
+        color: {
+            type: String,
+            required: true,
+        },
+        price: {
+            type: Number,
+            required: true,
+        },
+        qty: {
+            type: Number,
+            required: true,
+        },
+        total: {
+            type: Number,
+            required: true,
+        },
+    }],
 });
 
 const invoiceValidationSchema = Joi.object({
-    user_ref_id: Joi.string().hex().length(24).required(),
-    product_id: Joi.string().hex().length(24).required(),
-    address: Joi.string().required(),
-    paymentType: Joi.string().required(),
-    quantity: Joi.number().integer().min(1).required(), 
-    total: Joi.number().positive().required(), 
+    user_ref_id: Joi.string().required(),
+    address: Joi.string().optional(),
+    placed: Joi.boolean().optional(),
+    paymentType: Joi.string().optional(),
+    totQty: Joi.number().integer().min(1).optional(),
+    discount: Joi.number().optional(),
+    grandtotal: Joi.number().positive().optional(),
+    products: Joi.array().items(Joi.object({
+        product_id: Joi.string().required(),
+        name: Joi.string().required(),
+        color: Joi.string().required(),
+        price: Joi.number().positive().required(),
+        qty: Joi.number().integer().min(1).required(),
+        total: Joi.number().positive().required(),
+    })).required(),
 });
+
+
 
 module.exports = {
     Invoice: mongoose.model("Invoice", invoiceSchema),

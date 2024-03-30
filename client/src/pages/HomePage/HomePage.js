@@ -221,13 +221,8 @@ function HomePage() {
           {/* ProductGrid component */}
           {products.map(product => (
             <ProductGrid
-              key={product.id}
-              image={product.images1}
-              name={product.name}
-              desc={product.desc}
-              price={product.price}
-              type={product.type}
-              color={product.color}
+            key={product.id}
+            product={product}
             />
           ))}
         </div>
@@ -237,12 +232,7 @@ function HomePage() {
           {products.map(product => (
             <ProductList
               key={product.id}
-              image={product.images1}
-              name={product.name}
-              desc={product.about}
-              price={product.price}
-              type={product.type}
-              color={product.color}
+              product={product}
             />
           ))}
         </div>

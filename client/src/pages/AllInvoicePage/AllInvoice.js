@@ -43,23 +43,36 @@ function AllInvoice() {
             <div className={styles.logo}>
               <img src={logo} alt="logo" />
               Music Cart
-              <span>Home / Invoices</span>
+              <span>Home /{page === "Checkout" ? ('Checkout') : page === "MyCart"  ?('View Cart'):("Invoices")}</span>
             </div>
             <span className={styles.viewCart}>
               <img src={cartIcon} alt="cart" />
               View Cart
             </span>
           </div>
-          <button
+
+          {page === "Checkout" ? (
+            <button
             className={styles.backBtn}
             onClick={() =>
-              navigate("/product", {
-                state: { prop1: "value1", prop2: "value2" },
+              navigate("/allinvoice", {
+                state: { page: "MyCart"},
               })
             }
           >
-            Back to products
+            Back to cart
           </button>
+          ) : (
+            <button
+            className={styles.backBtn}
+            onClick={() =>
+              navigate("/homepage")
+            }
+          >
+            Back to {page==='MyCart'?'products':page==='MyInvoice'?'Home':'cart'} 
+          </button>
+          )}
+         
         </>
       )}
     

@@ -6,11 +6,14 @@ import logo from "../../assets/Icons/logo.png";
 import styles from "./ProductPage.module.css";
 import { useNavigate } from "react-router-dom";
 import cartIcon from "../../assets/Icons/Cart2.png";
-import image from "../../assets/Images/product1.png";
 import starIcon from '../../assets/Icons/Star.png'
+import { useLocation } from "react-router-dom";
 
 function ProductPage() {
   const [isMobile, setIsMobile] = useState(false);
+  const location = useLocation();
+  const { state } = location;
+  const product = state && state.product;
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,6 +29,16 @@ function ProductPage() {
   }, []);
 
   const navigate = useNavigate();
+
+  const handleBuyClick=()=>{
+    const isLogged = !!localStorage.getItem('name');
+    
+    if(isLogged){
+      navigate('/allinvoice', {state:{product:product, page:'MyCart'}})
+    }else{
+      navigate('/login');
+    }
+  } 
   return (
     <>
       <Header />
@@ -35,7 +48,7 @@ function ProductPage() {
             <div className={styles.logo}>
               <img src={logo} alt="logo" />
               Music Cart
-              <span>Home / Invoices</span>
+              <span>Home / {product.name}</span>
             </div>
             <span className={styles.viewCart}>
               <img src={cartIcon} alt="cart" />
@@ -51,26 +64,24 @@ function ProductPage() {
         </>
       )}
       <div className={styles.heading}>
-        Sony WH-CH720N, Wireless Over-Ear Active Noise Cancellation Headphones
-        with Mic, up to 50 Hours Playtime, Multi-Point Connection, App Support,
-        AUX & Voice Assistant Support for Mobile Phones (Black)
+        {product.topFeatures}
       </div>
 
       <div className={styles.mainContainer}>
 
         <div className={styles.leftContainer}>
           <div className={styles.leftTopDiv}>
-            <img src={image} alt="img" />
+            <img src={product.images1} alt="img" />
           </div>
           <div className={styles.leftBottomDiv}>
-            <img src={image} alt="img" />
-            <img src={image} alt="img" />
-            <img src={image} alt="img" />
+            <img src={product.images2} alt="img" />
+            <img src={product.images3} alt="img" />
+            <img src={product.images4} alt="img" />
           </div>
         </div>
 
         <div className={styles.rightContainer}>
-       <h2>Sony WH-CH720N</h2>
+       <h2>{product.name}</h2>
        <div className={styles.reviews}>
         <img src={starIcon} alt="stars"/> 
         <img src={starIcon} alt="stars"/> 
@@ -79,25 +90,14 @@ function ProductPage() {
         <img src={starIcon} alt="stars"/>
         (50 Customer reviews)
         </div>
-       <span style={{fontWeight:'600'}}>Price - ₹ 3,500</span>
-       <span>Black | Over-ear headphone</span>
+       <span style={{fontWeight:'600', fontSize:'1rem'}}>Price - ₹ {product.price}</span>
+       <span>{product.color} | {product.type}</span>
        <p>About this item <br/>
-Sony’s lightest Wireless Noise-cancelling headband
-       ever
-Up to 50-hour battery life with quick charging (3 min
-      charge for up to 1 hour of playback)
-Multi-Point Connection helps to pair with two
-      Bluetooth devices at the same time
-Take noise cancelling to the next level with Sony’s
-      Integrated Processor V1,so you can fully immerse
-      yourself in the music
-Super comfortable and lightweight design
-      ( 192 Grams )
-High sound quality and well-balanced sound tuning</p>
+       {product.about}</p>
        <span> <span style={{fontWeight:'600'}}>Available</span>  - In stock</span>
-       <span><span style={{fontWeight:'600'}}>Brand</span> - Sony</span>
-       <button>Add to cart</button>
-       <button style={{backgroundColor:'#FFB800'}}>Buy Now</button>
+       <span><span style={{fontWeight:'600'}}>Brand</span> - {product.brand}</span>
+       <button onClick={handleBuyClick}>Add to cart</button>
+       <button style={{backgroundColor:'#FFB800'}} onClick={handleBuyClick}>Buy Now</button>
        </div>
       </div>
 

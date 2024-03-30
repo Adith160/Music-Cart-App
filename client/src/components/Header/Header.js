@@ -45,7 +45,7 @@ function Header() {
           <span id="shopNow">Get 50% off on selected items | Show Now</span>
           {isLoggedIn ? (
             <div className={styles2.btns}>
-              <span onClick={() => toggleLogout()}>Logout</span>|
+              <span onClick={() => toggleLogout()}>Logout</span>
             </div>
           ) : (
             <div className={styles2.btns}>

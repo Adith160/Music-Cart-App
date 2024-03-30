@@ -3,6 +3,7 @@ const { Invoice, invoiceValidation } = require("../models/invoiceModel");
 const createInvoice = async (req, res) => {
   try {
     const userId = req.user.id;
+    const invId  = req.params.inv_id;
     const request = { ...req.body, user_ref_id: userId };
     const validationResult = invoiceValidation.validate(request);
     
@@ -13,33 +14,78 @@ const createInvoice = async (req, res) => {
       });
     }
 
-    const invoiceData = new Invoice(request);
-    await invoiceData.save();
+    // Check if an invoice with the provided _id exists
+    const existingInvoice = await Invoice.findById(invId);
 
-    return res.status(201).json({
-      message: "Invoice added successfully",
+    if (existingInvoice) {
+      // If an existing invoice is found, update it with the new data
+      existingInvoice.set(request);
+      await existingInvoice.save();
+    } else {
+      return res.status(404).json({
+        message: "Invoice not found",
+        success: false,
+      });
+    }
+
+    return res.status(200).json({
+      message: "Invoice updated successfully",
       success: true,
     });
   } catch (error) {
-    console.error("Error in creating invoice:", error);
+    console.error("Error in updating invoice:", error);
     return res.status(500).json({ error: "Internal Server Error", success: false });
   }
 };
+
+
+const addToCart = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const request = { ...req.body, user_ref_id: userId };
+    const validationResult = invoiceValidation.validate(request);
+    
+    if (validationResult.error) {
+      return res.status(400).json({
+        message: validationResult.error.message,
+        success: false,
+      });
+    }
+
+    // Find an existing invoice where placed=false
+    let invoice = await Invoice.findOne({ user_ref_id: userId, placed: false });
+
+    if (invoice) {
+      // If an existing invoice is found, update it with the new data
+      invoice.set(request); // Set the entire invoice data from the request
+    } else {
+      // If no existing invoice found, create a new one
+      invoice = new Invoice(request);
+    }
+
+    await invoice.save();
+
+    return res.status(201).json({
+      message: "Mycart updated/added successfully",
+      success: true,
+    });
+  } catch (error) {
+    console.error("Error in creating/updating invoice:", error);
+    return res.status(500).json({ error: "Internal Server Error", success: false });
+  }
+};
+
+
 
 const getAllInvoices = async (req, res) => {
     try {
       const userId = req.user.id;
       
       const invoices = await Invoice.find({ user_ref_id: userId });
-  
-      const invoicesData = invoices.map(invoice => ({
-        address: invoice.address,
-        id: invoice._id,
-      }));
-  
+
       return res.status(200).json({
         message: "All invoices data retrieved successfully",
-        data: invoicesData,
+        data: invoices,
         success: true
       });
     } catch (error) {
@@ -71,5 +117,43 @@ const getAllInvoices = async (req, res) => {
       return res.status(500).json({ error: "Internal Server Error", success: false });
     }
   };
+
+  const getMyCart = async (req, res) => {
+    try {
+      const userId = req.user.id;
+      
+      const invoice = await Invoice.findOne({ user_ref_id: userId, placed: false });
   
-  module.exports = { getAllInvoices, createInvoice, getInvoiceById };
+      if (!invoice) {
+        return res.status(404).json({
+          message: "Cart not found",
+          success: false
+        });
+      }
+  
+      // Calculate the number of products in the cart
+      const numProducts = invoice.products.length;
+  
+      // Calculate the sum of the total of each product object
+      let totalSum = 0;
+      for (const product of invoice.products) {
+        totalSum += product.total;
+      }
+  
+      return res.status(200).json({
+        message: "MyCart data retrieved successfully",
+        data: {
+          invoice,
+          numProducts,
+          totalSum
+        },
+        success: true
+      });
+    } catch (error) {
+      console.error("Error in getting MyCart:", error);
+      return res.status(500).json({ error: "Internal Server Error", success: false });
+    }
+  };
+  
+  
+  module.exports = { getAllInvoices, createInvoice, getInvoiceById, addToCart, getMyCart };

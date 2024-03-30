@@ -211,7 +211,7 @@ body {
 }
 
 .mainContainer {
-    height: 32vh;
+    height: 35vh;
     width: 93%;
     display: flex;
     justify-content: space-evenly;
