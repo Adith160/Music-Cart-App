@@ -131,19 +131,31 @@ const getAllInvoices = async (req, res) => {
         });
       }
   
+      // Remove _id field from each product object
+      const modifiedProducts = invoice.products.map(product => {
+        const { _id, ...productWithoutId } = product.toObject(); // Convert Mongoose document to plain JavaScript object
+        return productWithoutId;
+      });
+  
       // Calculate the number of products in the cart
-      const numProducts = invoice.products.length;
+      const numProducts = modifiedProducts.length;
   
       // Calculate the sum of the total of each product object
       let totalSum = 0;
-      for (const product of invoice.products) {
+      for (const product of modifiedProducts) {
         totalSum += product.total;
       }
+  
+      // Create a new invoice object without _id for products
+      const modifiedInvoice = {
+        ...invoice.toObject(), // Convert Mongoose document to plain JavaScript object
+        products: modifiedProducts
+      };
   
       return res.status(200).json({
         message: "MyCart data retrieved successfully",
         data: {
-          invoice,
+          invoice: modifiedInvoice,
           numProducts,
           totalSum
         },
@@ -154,6 +166,7 @@ const getAllInvoices = async (req, res) => {
       return res.status(500).json({ error: "Internal Server Error", success: false });
     }
   };
+  
   
   
   module.exports = { getAllInvoices, createInvoice, getInvoiceById, addToCart, getMyCart };

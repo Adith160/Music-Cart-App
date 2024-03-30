@@ -12,7 +12,6 @@ import { addToMycart, getMyCart } from "../../api/invoices";
 
 function ProductPage() {
   const [isMobile, setIsMobile] = useState(false);
-  const [myCart, setMyCart] = useState(null);
   const location = useLocation();
   const { state } = location;
   const product = state && state.product;
@@ -30,82 +29,17 @@ function ProductPage() {
     };
   }, []);
 
-  useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const cartData = await getMyCart();
-        setMyCart(cartData);
-      } catch (error) {
-        console.error("Error fetching cart data:", error);
-      }
-    };
-
-    fetchCart();
-  }, []);
-
   const navigate = useNavigate();
 
-  const handleBuyClick = async () => {
-    if (!myCart) {
-      // Fetch cart data again if not already fetched
-      try {
-        const cartData = await getMyCart();
-        setMyCart(cartData);
-      } catch (error) {
-        console.error("Error fetching cart data:", error);
-        return; // Exit function if there's an error fetching cart data
-      }
-    }
-  
+  const handleBuyClick=()=>{
     const isLogged = !!localStorage.getItem('name');
-  
-    if (isLogged) {
-      if (myCart && myCart.data.invoice.products.some(item => item.product_id === product._id)) {
-        // Product is already in the cart, update quantity
-        const updatedCart = myCart.data.invoice.products.map(item => {
-          if (item.product_id === product._id) {
-            return {
-              ...item,
-              qty: item.qty + 1, // Increment quantity by 1
-              total: (item.qty + 1) * item.price // Recalculate total based on updated quantity
-            };
-          }
-          return item;
-        });
-  
-        try {
-          // Update the cart with the updated product quantity
-          await addToMycart({ products: updatedCart });
-          // Navigate to cart page after updating the cart
-          navigate('/allinvoice', { state: { product: product, page: 'MyCart' } });
-        } catch (error) {
-          console.error("Error updating product quantity in cart:", error);
-        }
-      } else {
-        // Add product to cart
-        const productData = {
-          product_id: product._id,
-          name: product.name,
-          color: product.color,
-          price: product.price,
-          qty: 1, // Default quantity
-          total: product.price, // Default total based on price and quantity
-        };
-  
-        try {
-          debugger;
-          await addToMycart({ products: [...(myCart ? myCart.data.invoice.products : []), productData] });
-          // Navigate to cart page after adding product to cart
-          navigate('/allinvoice', { state: { product: product, page: 'MyCart' } });
-        } catch (error) {
-          console.error("Error adding product to cart:", error);
-        }
-      }
-    } else {
+    
+    if(isLogged){
+      navigate('/allinvoice', {state:{product:product, page:'MyCart'}})
+    }else{
       navigate('/login');
     }
-  };
-  
+  } 
   return (
     <>
       <Header />

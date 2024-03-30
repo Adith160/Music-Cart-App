@@ -25,15 +25,25 @@ function HomePage() {
   const [ShowList, setShowList] = useState(false);
   const [IsLogin, setIsLogin] = useState(false);
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [headphoneTypes, setHeadphoneTypes] = useState([]);
   const [headphoneCompanies, setHeadphoneCompanies] = useState([]);
   const [headphoneColors, setHeadphoneColors] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedFilters, setSelectedFilters] = useState({
+    headphoneType: '',
+    headphoneCompany: '',
+    headphoneColor: '',
+    priceRange: '',
+    sortBy: ''
+  });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const productsData = await getAllProducts();
         setProducts(productsData);
+        setFilteredProducts(productsData);
 
         // Extracting unique types, companies, and colors from productsData
         const types = [...new Set(productsData.map(product => product.type))];
@@ -83,6 +93,172 @@ function HomePage() {
       navigate('/AllInvoice', {state:{page:'MyCart'}})
     }
   }
+
+  const handleFilterChange = (filterType, value) => {
+    if (value === 'featured') {
+      setSelectedFilters(prevFilters => ({ ...prevFilters, [filterType]: '' }));
+      let filteredProducts = [...products];
+  
+      // Apply selected filters to the search results
+      Object.keys(selectedFilters).forEach(filter => {
+        const filterValue = selectedFilters[filter];
+        if (filterValue && filter !== filterType) {
+          switch(filter) {
+            case 'headphoneType':
+              filteredProducts = filteredProducts.filter(product => product.type === filterValue);
+              break;
+            case 'headphoneCompany':
+              filteredProducts = filteredProducts.filter(product => product.brand === filterValue);
+              break;
+            case 'headphoneColor':
+              filteredProducts = filteredProducts.filter(product => product.color === filterValue);
+              break;
+            case 'priceRange':
+              switch(filterValue) {
+                case 'a':
+                  filteredProducts = filteredProducts.filter(product => product.price >= 0 && product.price <= 1000);
+                  break;
+                case 'b':
+                  filteredProducts = filteredProducts.filter(product => product.price > 1000 && product.price <= 10000);
+                  break;
+                case 'c':
+                  filteredProducts = filteredProducts.filter(product => product.price > 10000 && product.price <= 20000);
+                  break;
+                default:
+                  break;
+              }
+              break;
+            default:
+              break;
+          }
+        }
+      });
+  
+      setFilteredProducts(filteredProducts);
+      return;
+    }
+  
+    setSelectedFilters({ ...selectedFilters, [filterType]: value });
+    let filteredProducts = [...products];
+  
+    switch(filterType) {
+      case 'headphoneType':
+        filteredProducts = value ? filteredProducts.filter(product => product.type === value) : products;
+        break;
+      case 'headphoneCompany':
+        filteredProducts = value ? filteredProducts.filter(product => product.brand === value) : products;
+        break;
+      case 'headphoneColor':
+        filteredProducts = value ? filteredProducts.filter(product => product.color === value) : products;
+        break;
+      case 'priceRange':
+        switch(value) {
+          case 'a':
+            filteredProducts = filteredProducts.filter(product => product.price >= 0 && product.price <= 1000);
+            break;
+          case 'b':
+            filteredProducts = filteredProducts.filter(product => product.price > 1000 && product.price <= 10000);
+            break;
+          case 'c':
+            filteredProducts = filteredProducts.filter(product => product.price > 10000 && product.price <= 20000);
+            break;
+          default:
+            break;
+        }
+        break;
+      default:
+        break;
+    }
+  
+    setFilteredProducts(filteredProducts);
+  };
+  
+  
+  const handleSortChange = (value) => {
+    if (value === 'featured') {
+      setSelectedFilters({ ...selectedFilters, sortBy: '' });
+      setFilteredProducts(products);
+      return;
+    }
+  
+    setSelectedFilters({ ...selectedFilters, sortBy: value });
+    let sortedProducts = [...filteredProducts];
+  
+    switch(value) {
+      case 'priceLow':
+        sortedProducts.sort((a, b) => a.price - b.price);
+        break;
+      case 'priceHigh':
+        sortedProducts.sort((a, b) => b.price - a.price);
+        break;
+      case 'nameAZ':
+        sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'nameZA':
+        sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      default:
+        break;
+    }
+  
+    setFilteredProducts(sortedProducts);
+  };
+  
+
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+    let filteredProducts = products.filter(product =>
+      product.name.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+
+    // Apply selected filters to the search results
+    Object.keys(selectedFilters).forEach(filterType => {
+      const value = selectedFilters[filterType];
+      if (value) {
+        switch(filterType) {
+          case 'headphoneType':
+            filteredProducts = filteredProducts.filter(product => product.type === value);
+            break;
+          case 'headphoneCompany':
+            filteredProducts = filteredProducts.filter(product => product.brand === value);
+            break;
+          case 'headphoneColor':
+            filteredProducts = filteredProducts.filter(product => product.color === value);
+            break;
+          case 'priceRange':
+            switch(value) {
+              case 'a':
+                filteredProducts = filteredProducts.filter(product => product.price >= 0 && product.price <= 1000);
+                break;
+              case 'b':
+                filteredProducts = filteredProducts.filter(product => product.price > 1000 && product.price <= 10000);
+                break;
+              case 'c':
+                filteredProducts = filteredProducts.filter(product => product.price > 10000 && product.price <= 20000);
+                break;
+              default:
+                break;
+            }
+            break;
+          default:
+            break;
+        }
+      }
+    });
+
+    setFilteredProducts(filteredProducts);
+  };
+
+  const getInitials = (name) => {
+    if (!name) return '';
+    const words = name.split(' ');
+    if (words.length >= 2) {
+      return words[0][0].toUpperCase() + words[1][0].toUpperCase();
+    } else {
+      return name[0].toUpperCase();
+    }
+  };
+
   return (
     <>
       <Header />
@@ -101,17 +277,17 @@ function HomePage() {
               View Cart
             </span>
             <div className={styles.dpDiv} onClick={handleShowDpClick}>
-              AK
-              {ShowDP && (
-                <div className={styles.dropdown}>
-                  <span onClick={(e) => e.stopPropagation()}>
-                    Nameuu biaciciiaci
-                  </span>
-                  <br />
-                  <span onClick={toggleLogout}>Logout</span>
-                </div>
-              )}
-            </div>
+    {getInitials(localStorage.getItem('name'))}
+    {ShowDP && (
+      <div className={styles.dropdown}>
+        <span onClick={(e) => e.stopPropagation()}>
+          {localStorage.getItem('name')}
+        </span>
+        <br />
+        <span onClick={toggleLogout}>Logout</span>
+      </div>
+    )}
+  </div>
           </div>}
           </div>
         </>
@@ -134,6 +310,8 @@ function HomePage() {
           name="search"
           id="search"
           placeholder="Search by Product Name"
+          value={searchQuery}
+          onChange={handleSearch}
         />
       </div>
 
@@ -167,69 +345,72 @@ function HomePage() {
             </div>
           )}
 
-<select id="headphoneType" style={{ maxWidth: "19%" }}>
+          <select id="headphoneType" style={{ maxWidth: "19%" }} onChange={(e) => handleFilterChange('headphoneType', e.target.value)}>
             <option value="" disabled selected>
               Headphone type
             </option>
+            <option value="featured">Featured</option>
             {headphoneTypes.map(type => (
               <option key={type} value={type}>{type}</option>
             ))}
           </select>
 
           {/* Select dropdown for headphone companies */}
-          <select id="headphoneComp" style={{ maxWidth: "14%" }}>
+          <select id="headphoneComp" style={{ maxWidth: "14%" }} onChange={(e) => handleFilterChange('headphoneCompany', e.target.value)}>
             <option value="" disabled selected>
               Company
             </option>
+            <option value="featured">Featured</option>
             {headphoneCompanies.map(company => (
               <option key={company} value={company}>{company}</option>
             ))}
           </select>
 
           {/* Select dropdown for headphone colors */}
-          <select id="headphoneColor" style={{ maxWidth: "12%" }}>
+          <select id="headphoneColor" style={{ maxWidth: "12%" }} onChange={(e) => handleFilterChange('headphoneColor', e.target.value)}>
             <option value="" disabled selected>
               Colour
             </option>
+            <option value="featured">Featured</option>
             {headphoneColors.map(color => (
               <option key={color} value={color}>{color}</option>
             ))}
           </select>
 
-          <select id="headphoneColor" style={{ maxWidth: "13%" }}>
+          <select id="priceRange" style={{ maxWidth: "13%" }} onChange={(e) => handleFilterChange('priceRange', e.target.value)}>
             <option value="" disabled selected>
               Price
             </option>
-            <option value="a">Option A</option>
-            <option value="b">Option B</option>
+            <option value="featured">Featured</option>
+            <option value="a">₹0 - ₹1,000</option>
+            <option value="b">₹1,000 - ₹10,000</option>
+            <option value="c">₹10,000 - ₹20,000</option>
           </select>
         </div>
 
-        <select id="sortBy" style={{ maxWidth: "18%" }}>
-          <option value="" disabled selected>
-            Sort by : Featured
-          </option>
-          <option value="a">Price : Lowest</option>
-          <option value="b">Price : Highest</option>
-          <option value="b">Name : (A-Z)</option>
-          <option value="b">Name : (Z-A)</option>
+        <select id="sortBy" style={{ maxWidth: "18%" }} onChange={(e) => handleSortChange(e.target.value)}>
+          <option value="featured">Sort by : Featured</option>
+          <option value="priceLow">Price : Lowest</option>
+          <option value="priceHigh">Price : Highest</option>
+          <option value="nameAZ">Name : (A-Z)</option>
+          <option value="nameZA">Name : (Z-A)</option>
         </select>
       </div>
 
-       {!ShowList ? (
+      {!ShowList ? (
         <div className={styles.mainContainer}>
           {/* ProductGrid component */}
-          {products.map(product => (
+          {filteredProducts.map(product => (
             <ProductGrid
-            key={product.id}
-            product={product}
+              key={product.id}
+              product={product}
             />
           ))}
         </div>
       ) : (
         <div className={styles.mainContainer}>
           {/* ProductList component */}
-          {products.map(product => (
+          {filteredProducts.map(product => (
             <ProductList
               key={product.id}
               product={product}
