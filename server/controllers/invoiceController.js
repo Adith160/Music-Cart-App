@@ -126,14 +126,16 @@ const getAllInvoices = async (req, res) => {
   
       if (!invoice) {
         return res.status(404).json({
-          message: "Cart not found",
           success: false
         });
       }
   
+      // Remove _id and __v fields from invoice object
+      const { _id, __v, ...invoiceWithoutIdAndV } = invoice.toObject(); // Convert Mongoose document to plain JavaScript object
+  
       // Remove _id field from each product object
-      const modifiedProducts = invoice.products.map(product => {
-        const { _id, ...productWithoutId } = product.toObject(); // Convert Mongoose document to plain JavaScript object
+      const modifiedProducts = invoiceWithoutIdAndV.products.map(product => {
+        const { _id, ...productWithoutId } = product;
         return productWithoutId;
       });
   
@@ -146,9 +148,9 @@ const getAllInvoices = async (req, res) => {
         totalSum += product.total;
       }
   
-      // Create a new invoice object without _id for products
+      // Create a new invoice object without _id and __v for products
       const modifiedInvoice = {
-        ...invoice.toObject(), // Convert Mongoose document to plain JavaScript object
+        ...invoiceWithoutIdAndV,
         products: modifiedProducts
       };
   
@@ -166,6 +168,7 @@ const getAllInvoices = async (req, res) => {
       return res.status(500).json({ error: "Internal Server Error", success: false });
     }
   };
+  
   
   
   

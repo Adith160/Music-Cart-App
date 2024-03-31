@@ -26,14 +26,14 @@ export const addToMycart = async (productData) => {
 //api for user registration
 export const getMyCart = async () => {
   try {
+    debugger;
     const reqUrl = `${backendUrl}/invoice/v1/getMyCart`;
     const token = localStorage.getItem("token");
     if (token) {
       axios.defaults.headers.common["Authorization"] = token;
     }
-    debugger;
     const response = await axios.get(reqUrl);
-    return response.data;
+    return response.data.data;
   } catch (error) {
     if (error.response && error.response.data) {
       toast.error(error.response.data.message);

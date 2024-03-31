@@ -24,6 +24,9 @@ const invoiceSchema = new Schema({
     discount: {
         type: Number,
     },
+    delivery: {
+        type: Number,
+    },
     grandtotal: {
         type: Number,
     },
@@ -31,18 +34,6 @@ const invoiceSchema = new Schema({
         product_id: {
             type: Schema.Types.ObjectId,
             ref: 'Product', 
-            required: true,
-        }, 
-        name: {
-            type: String,
-            required: true,
-        },
-        color: {
-            type: String,
-            required: true,
-        },
-        price: {
-            type: Number,
             required: true,
         },
         qty: {
@@ -63,12 +54,10 @@ const invoiceValidationSchema = Joi.object({
     paymentType: Joi.string().optional(),
     totQty: Joi.number().integer().min(1).optional(),
     discount: Joi.number().optional(),
+    delivery: Joi.number().optional(),
     grandtotal: Joi.number().positive().optional(),
     products: Joi.array().items(Joi.object({
         product_id: Joi.string().required(),
-        name: Joi.string().required(),
-        color: Joi.string().required(),
-        price: Joi.number().positive().required(),
         qty: Joi.number().integer().min(1).required(),
         total: Joi.number().positive().required(),
     })).required(),

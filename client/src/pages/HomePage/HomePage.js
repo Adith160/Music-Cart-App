@@ -173,7 +173,6 @@ function HomePage() {
     setFilteredProducts(filteredProducts);
   };
   
-  
   const handleSortChange = (value) => {
     if (value === 'featured') {
       setSelectedFilters({ ...selectedFilters, sortBy: '' });

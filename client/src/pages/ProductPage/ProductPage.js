@@ -46,60 +46,69 @@ function ProductPage() {
   const navigate = useNavigate();
 
   const handleBuyClick = async () => {
-    if (!myCart) {
-      // Fetch cart data again if not already fetched
-      try {
-        const cartData = await getMyCart();
-        setMyCart(cartData);
-      } catch (error) {
-        console.error("Error fetching cart data:", error);
-        return; // Exit function if there's an error fetching cart data
-      }
-    }
-  
     const isLogged = !!localStorage.getItem('name');
-  
     if (isLogged) {
-      if (myCart && myCart.data.invoice.products.some(item => item.product_id === product._id)) {
-        // Product is already in the cart, update quantity
-        const updatedCart = myCart.data.invoice.products.map(item => {
-          if (item.product_id === product._id) {
-            return {
-              ...item,
-              qty: item.qty + 1, // Increment quantity by 1
-              total: (item.qty + 1) * item.price // Recalculate total based on updated quantity
-            };
+      try {
+        let cartData = myCart;
+        // Fetch cart data again if not already fetched
+        if (!cartData) {
+          cartData = await getMyCart();
+          setMyCart(cartData);
+        }
+        // Calculate the total price of the product
+        const total = product.price;
+        if (!cartData || !cartData.invoice) {
+          // Create a new cart if it doesn't exist
+          const newCart = {
+            discount: 0,
+            delivery: 45,
+            products: [{
+              product_id: product._id, // Add product_id
+              qty: 1,
+              total: total
+            }],
+            placed: false,
+            totQty: 1, // Initialize totQty as 1
+            grandtotal: total // Initialize grandtotal
+          };
+          // Add the new cart to the backend
+          await addToMycart(newCart);
+          navigate('/allinvoice', { state: { product: product, page: 'MyCart' } });
+        } else {
+          // Update existing cart with the selected product
+          const existingProducts = cartData.invoice.products;
+          const existingProductIndex = existingProducts.findIndex(item => item.product_id === product._id);
+  
+          if (existingProductIndex === -1) {
+            // Selected product not in the cart, add it
+            existingProducts.push({
+              product_id: product._id, // Add product_id
+              qty: 1,
+              total: total
+            });
+            // Initialize totQty as 1 if it's not already set
+            cartData.invoice.totQty = cartData.invoice.totQty ? cartData.invoice.totQty + 1 : 1;
           }
-          return item;
-        });
-  
-        try {
-          // Update the cart with the updated product quantity
-          await addToMycart({ products: updatedCart });
-          // Navigate to cart page after updating the cart
-          navigate('/allinvoice', { state: { product: product, page: 'MyCart' } });
-        } catch (error) {
-          console.error("Error updating product quantity in cart:", error);
-        }
-      } else {
-        // Add product to cart
-        const productData = {
-          product_id: product._id,
-          name: product.name,
-          color: product.color,
-          price: product.price,
-          qty: 1, // Default quantity
-          total: product.price, // Default total based on price and quantity
-        };
-  
-        try {
+           else {
+            // Selected product already in the cart, update its quantity
+            existingProducts[existingProductIndex].qty += 1;
+            existingProducts[existingProductIndex].total += total;
+          }
           debugger;
-          await addToMycart({ products: [...(myCart ? myCart.data.invoice.products : []), productData] });
-          // Navigate to cart page after adding product to cart
-          navigate('/allinvoice', { state: { product: product, page: 'MyCart' } });
-        } catch (error) {
-          console.error("Error adding product to cart:", error);
+          // Update cart totals   
+          cartData.invoice.grandtotal = cartData.invoice.grandtotal ? Number(cartData.invoice.grandtotal) : 0+ total;
         }
+  
+        // Remove the _id field from MyCart object
+        delete cartData.invoice._id;
+  
+        // Update the cart in the backend
+        await addToMycart(cartData.invoice);
+  
+        // Navigate to cart page after updating the cart
+        navigate('/allinvoice', { state: { product: product, page: 'MyCart' } });
+      } catch (error) {
+        console.error("Error handling buy click:", error);
       }
     } else {
       navigate('/login');
