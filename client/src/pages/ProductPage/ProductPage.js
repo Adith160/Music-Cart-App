@@ -12,6 +12,7 @@ import { addToMycart, getMyCart } from "../../api/invoices";
 
 function ProductPage() {
   const [isMobile, setIsMobile] = useState(false);
+  const [IsLogin, setIsLogin] = useState(false);
   const [myCart, setMyCart] = useState(null);
   const location = useLocation();
   const { state } = location;
@@ -24,6 +25,7 @@ function ProductPage() {
 
     handleResize();
     window.addEventListener("resize", handleResize);
+    setIsLogin(!!localStorage.getItem("name"));
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -33,15 +35,18 @@ function ProductPage() {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const cartData = await getMyCart();
+        if(IsLogin){
+          const cartData = await getMyCart();
         setMyCart(cartData);
+        }
+        
       } catch (error) {
         console.error("Error fetching cart data:", error);
       }
     };
 
     fetchCart();
-  }, []);
+  }, [IsLogin]);
 
   const navigate = useNavigate();
 
@@ -51,7 +56,7 @@ function ProductPage() {
       try {
         let cartData = myCart;
         // Fetch cart data again if not already fetched
-        if (!cartData) {
+        if (!cartData & IsLogin) {
           cartData = await getMyCart();
           setMyCart(cartData);
         }
@@ -180,8 +185,8 @@ function ProductPage() {
        {product.about}</p>
        <span> <span style={{fontWeight:'600'}}>Available</span>  - In stock</span>
        <span><span style={{fontWeight:'600'}}>Brand</span> - {product.brand}</span>
-       <button onClick={handleBuyClick}>Add to cart</button>
-       <button style={{backgroundColor:'#FFB800'}} onClick={handleBuyClick}>Buy Now</button>
+       <button onClick={handleBuyClick}  style={{height:'8vh'}}>Add to cart</button>
+       <button style={{backgroundColor:'#FFB800', height:'8vh'}} onClick={handleBuyClick}>Buy Now</button>
        </div>
       </div>
 

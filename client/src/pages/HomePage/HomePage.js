@@ -311,7 +311,7 @@ function HomePage() {
           placeholder="Search by Product Name"
           value={searchQuery}
           onChange={handleSearch}
-          style={{height:'20%'}}
+          style={{height:'80%'}}
         />
       </div>
 
@@ -420,13 +420,15 @@ function HomePage() {
       )}
 
       {ShowFeedback && <FeedBack />}
+      {isMobile && 
       <div
-        className={styles.feedbackDIv}
-        onClick={() => setShowFeedback(!ShowFeedback)}
-      >
-        {" "}
-        <img src={feedIcon} alt="img" />{" "}
-      </div>
+      className={styles.feedbackDIv}
+      onClick={() => setShowFeedback(!ShowFeedback)}
+    >
+      {" "}
+      <img src={feedIcon} alt="img" />{" "}
+    </div>}
+      
       {!isMobile ? <Footer /> : <FooterMenu selected={1} />}
     </>
   );
