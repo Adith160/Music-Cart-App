@@ -108,7 +108,7 @@ option{
     font-size: 1rem;
 }
 
-.valueDiv p{
+.valueDiv input{
     max-height: 45%;
     width: 100%;
     border: 1px solid #cfcdcd;
@@ -118,7 +118,11 @@ option{
     padding: 1%;
 }
 
-.valueDiv p::-webkit-scrollbar {
+.valueDiv input{
+    height: 85vh;
+}
+
+.valueDiv textarea::-webkit-scrollbar {
     display: none;
 }
 

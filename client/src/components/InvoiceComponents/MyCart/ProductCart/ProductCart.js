@@ -25,7 +25,7 @@ function ProductCart({ product, onQuantityChange }) {
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.value);
     setQuantity(newQuantity);
-    onQuantityChange(product.product_id, newQuantity);
+    onQuantityChange(product.product_id, newQuantity, productData.price);
   };
 
   return (

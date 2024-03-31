@@ -1,9 +1,46 @@
 const { Invoice, invoiceValidation } = require("../models/invoiceModel");
 
+// const createInvoice = async (req, res) => {
+//   try {
+//     const userId = req.user.id;
+//     const invId  = req.params.inv_id;
+//     const request = { ...req.body, user_ref_id: userId };
+//     const validationResult = invoiceValidation.validate(request);
+    
+//     if (validationResult.error) {
+//       return res.status(400).json({
+//         message: validationResult.error.message,
+//         success: false,
+//       });
+//     }
+
+//     // Check if an invoice with the provided _id exists
+//     const existingInvoice = await Invoice.findById(invId);
+
+//     if (existingInvoice) {
+//       // If an existing invoice is found, update it with the new data
+//       existingInvoice.set(request);
+//       await existingInvoice.save();
+//     } else {
+//       return res.status(404).json({
+//         message: "Invoice not found",
+//         success: false,
+//       });
+//     }
+
+//     return res.status(200).json({
+//       message: "Invoice updated successfully",
+//       success: true,
+//     });
+//   } catch (error) {
+//     console.error("Error in updating invoice:", error);
+//     return res.status(500).json({ error: "Internal Server Error", success: false });
+//   }
+// };
+
 const createInvoice = async (req, res) => {
   try {
     const userId = req.user.id;
-    const invId  = req.params.inv_id;
     const request = { ...req.body, user_ref_id: userId };
     const validationResult = invoiceValidation.validate(request);
     
@@ -14,8 +51,8 @@ const createInvoice = async (req, res) => {
       });
     }
 
-    // Check if an invoice with the provided _id exists
-    const existingInvoice = await Invoice.findById(invId);
+    // Find the invoice with placed=false and matching user_ref_id
+    const existingInvoice = await Invoice.findOne({ user_ref_id: userId, placed: false });
 
     if (existingInvoice) {
       // If an existing invoice is found, update it with the new data
@@ -37,6 +74,7 @@ const createInvoice = async (req, res) => {
     return res.status(500).json({ error: "Internal Server Error", success: false });
   }
 };
+
 
 
 const addToCart = async (req, res) => {
@@ -81,7 +119,7 @@ const getAllInvoices = async (req, res) => {
     try {
       const userId = req.user.id;
       
-      const invoices = await Invoice.find({ user_ref_id: userId });
+      const invoices = await Invoice.find({ user_ref_id: userId, placed: true });
 
       return res.status(200).json({
         message: "All invoices data retrieved successfully",

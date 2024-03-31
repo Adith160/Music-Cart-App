@@ -311,6 +311,7 @@ function HomePage() {
           placeholder="Search by Product Name"
           value={searchQuery}
           onChange={handleSearch}
+          style={{height:'20%'}}
         />
       </div>
 

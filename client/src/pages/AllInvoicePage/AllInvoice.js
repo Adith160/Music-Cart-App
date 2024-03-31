@@ -7,6 +7,7 @@ import styles from "./AllInvoice.module.css";
 import MyInvoices from "../../components/InvoiceComponents/MyInvoices/MyInvoices";
 import MyCart from "../../components/InvoiceComponents/MyCart/MyCart";
 import Invoice from "../../components/InvoiceComponents/Invoice/Invoice";
+import InvoiceView from "../../components/InvoiceComponents/Invoice/InvoiceView";
 import { useNavigate } from "react-router-dom";
 import cartIcon from "../../assets/Icons/Cart2.png";
 import fileIcon from "../../assets/Icons/File2.png";
@@ -19,6 +20,7 @@ function AllInvoice() {
   const location = useLocation();
   const { state } = location;
   const page = state && state.page;
+  const invId = state && state.invId;
   //page = "MyCart";
   useEffect(() => {
     const handleResize = () => {
@@ -66,7 +68,7 @@ function AllInvoice() {
             <button
             className={styles.backBtn}
             onClick={() =>
-              navigate("/homepage")
+              page==='Invoice'?navigate("/allInvoice", {state:{page:'MyInvoice'}}) : navigate("/homepage") 
             }
           >
             Back to {page==='MyCart'?'products':page==='MyInvoice'?'Home':'cart'} 
@@ -111,7 +113,7 @@ function AllInvoice() {
             </div>
 
             <div className={styles.mainContainer} style={isMobile? {height:'90vh', overflowY:'scroll'}:{}}>
-              <Invoice view={'view'}/>
+              <InvoiceView invId={invId}/>
             </div>
           </>
         )}

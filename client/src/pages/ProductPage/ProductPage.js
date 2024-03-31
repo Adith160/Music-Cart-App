@@ -114,6 +114,14 @@ function ProductPage() {
       navigate('/login');
     }
   };
+
+  const handleViewCartClick = ()=>{
+    if(!localStorage.getItem('name')){
+      navigate('/login');
+    }else{
+      navigate('/AllInvoice', {state:{page:'MyCart'}})
+    }
+  }
   
   return (
     <>
@@ -127,8 +135,8 @@ function ProductPage() {
               <span>Home / {product.name}</span>
             </div>
             <span className={styles.viewCart}>
-              <img src={cartIcon} alt="cart" />
-              View Cart
+              <img src={cartIcon} alt="cart" onClick={handleViewCartClick}/>
+              View Cart {myCart && myCart.invoice.products.length}
             </span>
           </div>
           <button
