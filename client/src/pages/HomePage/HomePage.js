@@ -434,7 +434,7 @@ function HomePage() {
       )}
 
       {ShowFeedback && <FeedBack />}
-      {isMobile && 
+      {IsLogin && 
       <div
       className={styles.feedbackDIv}
       onClick={() => setShowFeedback(!ShowFeedback)}
