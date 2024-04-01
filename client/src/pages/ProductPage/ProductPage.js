@@ -68,13 +68,13 @@ function ProductPage() {
             discount: 0,
             delivery: 45,
             products: [{
-              product_id: product._id, // Add product_id
+              product_id: product._id, 
               qty: 1,
               total: total
             }],
             placed: false,
-            totQty: 1, // Initialize totQty as 1
-            grandtotal: total // Initialize grandtotal
+            totQty: 1,
+            grandtotal: total 
           };
           // Add the new cart to the backend
           await addToMycart(newCart);
@@ -87,7 +87,7 @@ function ProductPage() {
           if (existingProductIndex === -1) {
             // Selected product not in the cart, add it
             existingProducts.push({
-              product_id: product._id, // Add product_id
+              product_id: product._id, 
               qty: 1,
               total: total
             });
@@ -110,7 +110,6 @@ function ProductPage() {
         // Update the cart in the backend
         await addToMycart(cartData.invoice);
   
-        // Navigate to cart page after updating the cart
         navigate('/allinvoice', { state: { product: product, page: 'MyCart' } });
       } catch (error) {
         console.error("Error handling buy click:", error);
@@ -139,8 +138,8 @@ function ProductPage() {
               Music Cart
               <span>Home / {product.name}</span>
             </div>
-            <span className={styles.viewCart}>
-              <img src={cartIcon} alt="cart" onClick={handleViewCartClick}/>
+            <span className={styles.viewCart} onClick={handleViewCartClick}>
+              <img src={cartIcon} alt="cart"/>
               View Cart {myCart && myCart.invoice.products.length}
             </span>
           </div>
@@ -185,8 +184,8 @@ function ProductPage() {
        {product.about}</p>
        <span> <span style={{fontWeight:'600'}}>Available</span>  - In stock</span>
        <span><span style={{fontWeight:'600'}}>Brand</span> - {product.brand}</span>
-       <button onClick={handleBuyClick}  style={{height:'8vh'}}>Add to cart</button>
-       <button style={{backgroundColor:'#FFB800', height:'8vh'}} onClick={handleBuyClick}>Buy Now</button>
+       <button onClick={handleBuyClick}  style={{height:'6vh'}}>Add to cart</button>
+       <button style={{backgroundColor:'#FFB800', height:'6vh'}} onClick={handleBuyClick}>Buy Now</button>
        </div>
       </div>
 

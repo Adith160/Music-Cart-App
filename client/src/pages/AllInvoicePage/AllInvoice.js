@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import cartIcon from "../../assets/Icons/Cart2.png";
 import fileIcon from "../../assets/Icons/File2.png";
 import bagIcom from '../../assets/Icons/Bag.png'
-import backIcon from '../../assets/Icons/Back.png'
+import backIcon from '../../assets/Icons/Back.png' 
 import { useLocation } from "react-router-dom";
 
 function AllInvoice() {
@@ -21,7 +21,6 @@ function AllInvoice() {
   const { state } = location;
   const page = state && state.page;
   const invId = state && state.invId;
-  //page = "MyCart";
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600);
@@ -46,11 +45,12 @@ function AllInvoice() {
               <img src={logo} alt="logo" />
               Music Cart
               <span>Home /{page === "Checkout" ? ('Checkout') : page === "MyCart"  ?('View Cart'):("Invoices")}</span>
-            </div>
-            <span className={styles.viewCart}>
+            </div> 
+            {page==='MyInvoice' | page==='MyCart' ?
+            <span className={styles.viewCart} onClick={()=> navigate('/AllInvoice', {state:{page:'MyCart'}})}>
               <img src={cartIcon} alt="cart" />
               View Cart
-            </span>
+            </span> : ''}
           </div>
 
           {page === "Checkout" ? (
@@ -99,7 +99,7 @@ function AllInvoice() {
             </div>
 
             <div className={styles.mainContainer}>
-              <MyCart />
+              <MyCart/>
             </div>
           </>
         )}

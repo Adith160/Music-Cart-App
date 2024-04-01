@@ -63,8 +63,6 @@ const invoiceValidationSchema = Joi.object({
     })).required(),
 });
 
-
-
 module.exports = {
     Invoice: mongoose.model("Invoice", invoiceSchema),
     invoiceValidation: invoiceValidationSchema,

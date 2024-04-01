@@ -170,7 +170,7 @@ function Invoice() {
             </button>
             <div>
               <span style={{ color: "#B52B00", fontWeight: "500" }}>
-                Order Total : &#8377;3545.00{" "}
+                Order Total : &#8377;{invoiceData.grandtotal}{" "}
               </span>
               <br />
               <span style={{ fontSize: "0.7rem" }}>

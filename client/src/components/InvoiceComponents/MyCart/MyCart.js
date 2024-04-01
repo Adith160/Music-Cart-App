@@ -93,7 +93,7 @@ function MyCart() {
           </span>
           <div className={styles.total}>
             <span className={styles.amount}>
-              Total Amount <span>&#8377; {calculateTotalPrice() + fullData.grandtotal}</span>
+              Total Amount <span>&#8377; {calculateTotalPrice() + fullData.delivery}</span>
             </span>
             <br />
             <button

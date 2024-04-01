@@ -17,6 +17,7 @@ import FeedBack from "../../components/FeedBack/FeedBack";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
 import ProductList from "../../components/ProductList/ProductList";
 import { getAllProducts } from "../../api/product";
+import { getMyCart } from "../../api/invoices";
 
 function HomePage() {
   const [isMobile, setIsMobile] = useState(false);
@@ -30,6 +31,7 @@ function HomePage() {
   const [headphoneCompanies, setHeadphoneCompanies] = useState([]);
   const [headphoneColors, setHeadphoneColors] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [cartCount, setCartCount] = useState(0);
   const [selectedFilters, setSelectedFilters] = useState({
     headphoneType: '',
     headphoneCompany: '',
@@ -68,10 +70,24 @@ function HomePage() {
     handleResize();
     window.addEventListener("resize", handleResize);
 
+    const fetchCart = async () => {
+      try {
+        if(IsLogin){
+          const cartData = await getMyCart();
+          setCartCount(cartData.invoice.products.length);
+        }
+        
+      } catch (error) {
+        console.error("Error fetching cart data:", error);
+      }
+    };
+
+    fetchCart();
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [IsLogin]);
 
   const navigate = useNavigate();
 
@@ -273,7 +289,7 @@ function HomePage() {
             <div className={styles.profileDiv}>
             <span className={styles.viewCart} onClick={()=>handleViewCartClick()}>
               <img src={cartIcon} alt="cart" />
-              View Cart
+              View Cart {cartCount}
             </span>
             <div className={styles.dpDiv} onClick={handleShowDpClick}>
     {getInitials(localStorage.getItem('name'))}
@@ -355,7 +371,6 @@ function HomePage() {
             ))}
           </select>
 
-          {/* Select dropdown for headphone companies */}
           <select id="headphoneComp" style={{ maxWidth: "14%" }} onChange={(e) => handleFilterChange('headphoneCompany', e.target.value)}>
             <option value="" disabled selected>
               Company
@@ -366,7 +381,6 @@ function HomePage() {
             ))}
           </select>
 
-          {/* Select dropdown for headphone colors */}
           <select id="headphoneColor" style={{ maxWidth: "12%" }} onChange={(e) => handleFilterChange('headphoneColor', e.target.value)}>
             <option value="" disabled selected>
               Colour
@@ -399,21 +413,21 @@ function HomePage() {
 
       {!ShowList ? (
         <div className={styles.mainContainer}>
-          {/* ProductGrid component */}
           {filteredProducts.map(product => (
             <ProductGrid
               key={product.id}
               product={product}
+              setCartCount={setCartCount}
             />
           ))}
         </div>
       ) : (
         <div className={styles.mainContainer}>
-          {/* ProductList component */}
           {filteredProducts.map(product => (
             <ProductList
               key={product.id}
               product={product}
+              setCartCount={setCartCount}
             />
           ))}
         </div>
