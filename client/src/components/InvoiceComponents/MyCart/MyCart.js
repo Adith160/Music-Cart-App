@@ -7,6 +7,8 @@ import { getMyCart, addToMycart } from "../../../api/invoices";
 function MyCart() {
   const [cartData, setCartData] = useState([]);
   const [fullData, setFullData] = useState({});
+  const [isMobile, setIsMobile] = useState(false);
+ 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,6 +22,18 @@ function MyCart() {
       }
     };
     fetchCartData();
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 600);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const handleQuantityChange = (productId, quantity, price) => {
@@ -64,7 +78,8 @@ function MyCart() {
 
   return (
     <div className={styles.mainDiv}>
-      <div className={styles.leftDiv}>
+      {!isMobile? (<>
+        <div className={styles.leftDiv}>
         <div className={styles.leftTop}>
           {cartData.map((product) => (
             <Products
@@ -105,6 +120,31 @@ function MyCart() {
           </div>
         </div>
       </div>
+      </>) : (<div>
+        <div className={styles.mobileDiv}>
+          {cartData.map((product) => (
+            <Products
+              key={product.product_id}
+              product={product}
+              onQuantityChange={handleQuantityChange}
+              isMobile={isMobile}
+            />
+          ))}
+        </div>
+        <div className={styles.total}>
+            <span className={styles.amount}>
+              Total Amount <span>&#8377; {calculateTotalPrice() + fullData.delivery}</span>
+            </span>
+            <br />
+            <button
+              className={styles.viewInvoice}
+              onClick={handlePlaceOrder}
+            >
+              PLACE ORDER
+            </button>
+          </div>
+      </div>)}
+     
     </div>
   );
 }

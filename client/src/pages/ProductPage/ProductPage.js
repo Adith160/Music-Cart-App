@@ -9,6 +9,11 @@ import cartIcon from "../../assets/Icons/Cart2.png";
 import starIcon from '../../assets/Icons/Star.png'
 import { useLocation } from "react-router-dom";
 import { addToMycart, getMyCart } from "../../api/invoices";
+import backIcon from '../../assets/Icons/Back.png'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 function ProductPage() {
   const [isMobile, setIsMobile] = useState(false);
@@ -126,11 +131,20 @@ function ProductPage() {
       navigate('/AllInvoice', {state:{page:'MyCart'}})
     }
   }
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: isMobile ? 1 : 3, // Adjust slidesToShow for mobile
+    slidesToScroll: 1,
+  };
+  
   
   return (
     <>
       <Header />
-      {!isMobile && (
+      {!isMobile ? (
         <>
           <div className={styles.topDiv}>
             <div className={styles.logo}>
@@ -149,15 +163,18 @@ function ProductPage() {
           >
             Back to products
           </button>
+          <div className={styles.heading}>
+      {product.topFeatures}
+    </div>
         </>
-      )}
-      <div className={styles.heading}>
-        {product.topFeatures}
-      </div>
+      ): 
+      <>
+      <div className={styles.backImg}> <img src={backIcon} alt="file" onClick={() => navigate("/HomePage")}/> </div>
+       <button className={styles.topButton} onClick={handleBuyClick}>Buy Now</button> </>}
 
       <div className={styles.mainContainer}>
 
-        <div className={styles.leftContainer}>
+{!isMobile? <div className={styles.leftContainer}>
           <div className={styles.leftTopDiv}>
             <img src={product.images1} alt="img" />
           </div>
@@ -167,7 +184,25 @@ function ProductPage() {
             <img src={product.images4} alt="img" />
           </div>
         </div>
-
+          :
+          <div className={styles.sliders}> 
+          <Slider {...sliderSettings}>
+          <div>
+            <img src={product.images1} alt="img"/>
+          </div>
+          <div>
+            <img src={product.images2} alt="img" />
+          </div>
+          <div>
+            <img src={product.images3} alt="img" />
+          </div>
+          <div>
+            <img src={product.images4} alt="img" />
+          </div>
+        </Slider>
+        </div>
+}
+        
         <div className={styles.rightContainer}>
        <h2>{product.name}</h2>
        <div className={styles.reviews}>

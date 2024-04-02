@@ -17,8 +17,6 @@ function MyInvoices() {
 
     fetchInvoices();
   }, []);
-  debugger;
-  console.log(invoices)
 
   return (
     <>

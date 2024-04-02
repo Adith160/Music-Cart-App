@@ -82,11 +82,11 @@ option{
 }
 
 .imageDiv{
-    height: 12vh;
-    width: 28%;
+    height: 9vh;
+    width: 23%;
     border: 1px solid #2E0052;
     cursor: pointer;
-    margin: 1%;
+    margin: 5% 7% 0 0;
 }
 
 .imageDiv img{
@@ -125,6 +125,11 @@ option{
 .valueDiv textarea::-webkit-scrollbar {
     display: none;
 }
+
+textarea:focus {
+    border: none; 
+    outline: none; 
+  }
 
 .valueBottomDiv{
     margin: 8% 0% 8% -12%;
@@ -247,10 +252,19 @@ h3{
     .subDiv,
     .subDiv2,
     .subDiv3 {
-      width: 100%;flex-direction: column;
+      width: 110%;flex-direction: column;
       justify-content: space-around;
       align-items: flex-start;
       margin-bottom: 5%;
+    }
+
+    .subDiv3{
+        border: none;
+    }
+
+    textarea{
+        height: 8vh;
+        border:none;
     }
 
     .subDiv p{
@@ -259,7 +273,11 @@ h3{
   
     .imageDiv {
       width: 25%;
-      height: 15%;
+      height: 11vh;
+    }
+
+    .imageDiv img{
+        height: 10vh;
     }
   
     .valueDiv {
@@ -267,7 +285,7 @@ h3{
     }
 
     .valueBottomDiv{
-        margin: 0;
+        margin: 2% 0 2% -14%;
     }
 
     .valueBottomDiv p{
@@ -289,14 +307,26 @@ h3{
       width: 90%;
       border: none;
       margin: 0;
+      margin-top: 35vh;
+      padding-bottom: 10vh;
     }
 
     .orderDiv{
         border: none;
+        margin-left: -5%;
+        margin-bottom: 2%;
+        border-bottom: 2px solid #E1E1E1;
+        padding-bottom: 10%;
     }
 
     .orderBtn{
-        height: 3vh;
+        height: 6vh;
+        margin-top: 4%;
+        width: 100%;
+    }
+
+    .orderDiv {
+        font-size: 1.2rem;
     }
   }
   

@@ -14,7 +14,7 @@ function FooterMenu(props) {
         <img src={homeIcon} alt="home" />
         Home
       </span>
-      <span  onClick={()=> navigate('/HomePage')}>
+      <span  onClick={()=> navigate('/allinvoice', { state: {page: 'MyCart' } })}>
         {props.selected === 2 && <p className={styles2.selected}></p>}
         <div className={styles2.count}>2</div>
         <img

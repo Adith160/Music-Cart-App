@@ -18,6 +18,7 @@ import ProductGrid from "../../components/ProductGrid/ProductGrid";
 import ProductList from "../../components/ProductList/ProductList";
 import { getAllProducts } from "../../api/product";
 import { getMyCart } from "../../api/invoices";
+import { toast } from "react-toastify";
 
 function HomePage() {
   const [isMobile, setIsMobile] = useState(false);
@@ -56,7 +57,7 @@ function HomePage() {
         setHeadphoneCompanies(brand);
         setHeadphoneColors(colors);
       } catch (error) {
-        console.error("Error fetching products:", error);
+        toast.error("Error fetching products:", error);
       }
     };
 
@@ -78,7 +79,7 @@ function HomePage() {
         }
         
       } catch (error) {
-        console.error("Error fetching cart data:", error);
+        toast.error("Error fetching cart data:", error);
       }
     };
 

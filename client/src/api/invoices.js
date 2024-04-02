@@ -89,7 +89,6 @@ export const getInvoiceById = async (invId) => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = token;
     }
-    debugger;
     const response = await axios.get(reqUrl);
     return response.data.data;
   } catch (error) {

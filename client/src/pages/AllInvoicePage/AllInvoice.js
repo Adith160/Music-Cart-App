@@ -13,7 +13,7 @@ import cartIcon from "../../assets/Icons/Cart2.png";
 import fileIcon from "../../assets/Icons/File2.png";
 import bagIcom from '../../assets/Icons/Bag.png'
 import backIcon from '../../assets/Icons/Back.png' 
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom"; 
 
 function AllInvoice() {
   const [isMobile, setIsMobile] = useState(false);
@@ -93,11 +93,11 @@ function AllInvoice() {
 
         {page === "MyCart" && (
           <>
-          {isMobile &&  <div className={styles.backImg}> <img src={backIcon} alt="file" /> </div>}
+          {isMobile ?  <div className={styles.backImg}> <img src={backIcon} alt="file" onClick={()=>navigate("/homepage")} /> </div> :
             <div className={styles.heading}>
-              <img src={bagIcom} alt="bag" className={styles.bagIcon}/> My Cart
-            </div>
-
+            <img src={bagIcom} alt="bag" className={styles.bagIcon}/> My Cart
+          </div>
+          }
             <div className={styles.mainContainer}>
               <MyCart/>
             </div>
@@ -134,7 +134,7 @@ function AllInvoice() {
           </>
         )}
 
-      {!isMobile ? <Footer /> : <FooterMenu selected={1} />}
+      {!isMobile ? <Footer /> : page==='MyCart'? <FooterMenu selected={2}/> : <FooterMenu selected={1}/>}
     </>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './ProductCart.module.css';
 import { getProductById } from '../../../../api/product';
 
-function ProductCart({ product, onQuantityChange }) {
+function ProductCart({ product, onQuantityChange, isMobile }) {
   const [productData, setProductData] = useState({});
   const [quantity, setQuantity] = useState(0);
 
@@ -30,7 +30,7 @@ function ProductCart({ product, onQuantityChange }) {
 
   return (
     <div className={styles.productsDiv}>
-      <div className={styles.productDiv}>
+      {!isMobile ? <> <div className={styles.productDiv}>
         <div className={styles.imageDiv}>
           <img src={productData.images1} alt="Product" />
         </div>
@@ -66,7 +66,16 @@ function ProductCart({ product, onQuantityChange }) {
             &#8377; {productData.price * quantity}
           </span>
         </div>
-      </div>
+      </div></> : <div className={styles.mobileDiv}>
+          <img src={productData.images1} alt="Product" />
+          <div className={styles.mobileRightDiv}> 
+           <span style={{fontSize:'1.3rem'}}> {productData.name}</span><br/>
+           <h3>{productData.price}</h3><br/>
+           <span>Color: {productData.color}</span><br/>
+           <span>In Stock</span><br/>
+           <span style={{fontWeight:'600', fontSize:'1.2rem', marginTop:'10%'}}>Total: {productData.price * quantity}</span>
+          </div>
+      </div>}
     </div>
   );
 }

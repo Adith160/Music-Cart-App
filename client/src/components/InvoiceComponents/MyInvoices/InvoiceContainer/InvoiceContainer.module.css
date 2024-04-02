@@ -61,4 +61,8 @@
         margin: 2% 0 0 0;
         font-size: 0.8rem;
     }
+
+    .viewInvoice{
+        width: 35%;
+    }
 }

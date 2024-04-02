@@ -11,7 +11,8 @@ function ProductGrid(props) {
   
   useEffect(() => {
     setIsLogin(!!localStorage.getItem("name"));
-  }, []);
+    myCart && props.setCartCount(myCart.invoice.products.length);
+  }, [myCart, props]);
   useEffect(() => {
     const fetchCart = async () => {
       try {

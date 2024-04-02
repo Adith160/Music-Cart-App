@@ -22,7 +22,6 @@ export const getAllProducts = async () => {
 //getAllProducts
 export const getProductById = async (productId) => {
   try {
-    debugger;
     const response = await axios.get(`${backendUrl}/product/v1/getProductById/${productId}`);
     if (response.status === 200) {
       return response.data.data; // Assuming your products are nested under 'data' key

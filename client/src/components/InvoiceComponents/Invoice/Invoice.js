@@ -107,7 +107,6 @@ function Invoice() {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder="Enter address"
-                style={{ height: "45%" }}
               />
             </div>
           </div>
@@ -195,7 +194,7 @@ function Invoice() {
               </p>
             </>
           ) : (
-            ""
+            ''
           )}
           <div className={styles.orderDiv}>
             <h3>Order Summary</h3>
