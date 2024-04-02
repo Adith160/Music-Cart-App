@@ -101,7 +101,7 @@ function Invoice(props) {
               <div className={styles.valueTopDiv}>
                 {cartData.map((product) => (
                   <div
-                  style={{marginLeft:'-5%'}}
+                    style={{ marginLeft: "-5%" }}
                     className={styles.imageDiv}
                     key={product.product_id}
                     onClick={() => handleProductClick(product.product_id)}
@@ -113,7 +113,10 @@ function Invoice(props) {
                   </div>
                 ))}
               </div>
-              <div className={styles.valueBottomDiv} style={{marginLeft:'-6%'}}>
+              <div
+                className={styles.valueBottomDiv}
+                style={{ marginLeft: "-6%" }}
+              >
                 {selectedProduct && (
                   <>
                     <h3 style={{ color: "black", margin: "1%" }}>
@@ -122,8 +125,9 @@ function Invoice(props) {
                     <span> Color: {selectedProduct.color}</span>
                   </>
                 )}
-                <span style={{color:'black'}}>
-                  <br/>Delivery : Monday — FREE Standard Delivery  <br /> Delivery
+                <span style={{ color: "black" }}>
+                  <br />
+                  Delivery : Monday — FREE Standard Delivery <br /> Delivery
                 </span>
               </div>
             </div>

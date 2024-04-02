@@ -22,7 +22,7 @@ function RegisterPage() {
 
   return (
     <>
-    {isMobile && <Header />}
+      {isMobile && <Header />}
       <Login />
       <Footer />
     </>

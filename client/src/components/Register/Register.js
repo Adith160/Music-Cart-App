@@ -37,23 +37,23 @@ function Register() {
   };
   const handleUserSubmit = async (e) => {
     e.preventDefault();
-  
+
     const mobileRegex = /^\d{10}$/;
     if (!mobileRegex.test(userData.mobile)) {
       toast.error("Please enter a valid 10-digit mobile number");
       return;
     }
-  
+
     // Check if other fields are filled
     if (
-      userData.name.trim() === '' ||
-      userData.email.trim() === '' ||
-      userData.password.trim() === ''
+      userData.name.trim() === "" ||
+      userData.email.trim() === "" ||
+      userData.password.trim() === ""
     ) {
       toast.error("Please check all fields");
       return;
     }
-  
+
     const response = await registerUser({ ...userData });
     if (response) {
       localStorage.setItem("token", response.token);
@@ -67,12 +67,17 @@ function Register() {
       navigate("/homepage");
     }
   };
-  
-  
+
   return (
     <div className={styles.mainDiv}>
       {isMobile ? (
-        <div style={{ fontSize: "2.5rem", margin: "-5% 40% 5% 0%" , color:'#2E0052'}}>
+        <div
+          style={{
+            fontSize: "2.5rem",
+            margin: "-5% 40% 5% 0%",
+            color: "#2E0052",
+          }}
+        >
           Welcome
         </div>
       ) : (
@@ -82,7 +87,16 @@ function Register() {
         </div>
       )}
       <div className={styles.mainContainer}>
-        {isMobile ? <span>Create Account.<span style={{fontSize:'0.7rem', fontWeight:'300'}}>Don’t have an account?</span></span> :<span>Create Account</span>}
+        {isMobile ? (
+          <span>
+            Create Account.
+            <span style={{ fontSize: "0.7rem", fontWeight: "300" }}>
+              Don’t have an account?
+            </span>
+          </span>
+        ) : (
+          <span>Create Account</span>
+        )}
 
         <form onSubmit={handleUserSubmit} autoComplete="off">
           <label>Your Name</label>
@@ -92,7 +106,7 @@ function Register() {
             value={userData.name}
             onChange={handleOnChange}
           ></input>
-        
+
           <label>Mobile Number</label>
           <input
             name="mobile"
@@ -132,11 +146,11 @@ function Register() {
         </form>
       </div>
       <span>
-        Already have an account? <u onClick={()=> navigate("/login")}>Sign in</u>
+        Already have an account?{" "}
+        <u onClick={() => navigate("/login")}>Sign in</u>
       </span>
     </div>
   );
-
 }
 
 export default Register;

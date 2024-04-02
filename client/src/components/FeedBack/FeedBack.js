@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "./FeedBack.module.css";
 import { createFeedback } from "../../api/feedback";
 import { toast } from "react-toastify";
-// import imgs from ''
 
 function FeedBack() {
   const [type, setType] = useState("");
@@ -37,24 +36,26 @@ function FeedBack() {
       <div className={styles.topdiv}>
         <span>Type of feedback</span>
         <select id="type" value={type} onChange={handleTypeChange}>
-          <option value="" disabled>Select the type</option>
+          <option value="" disabled>
+            Select the type
+          </option>
           <option value="Bugs">Bugs</option>
           <option value="Feedback">Feedback</option>
           <option value="Query">Query</option>
         </select>
       </div>
-      
+
       <div className={styles.textArea}>
         <span>Feedback</span>
-        <textarea 
-          value={feedbackText} 
-          onChange={handleFeedbackChange} 
+        <textarea
+          value={feedbackText}
+          onChange={handleFeedbackChange}
           placeholder="Type your feedback"
-          rows={4} 
-          cols={50} 
+          rows={4}
+          cols={50}
         />
       </div>
-      
+
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );

@@ -47,12 +47,18 @@ function SuccessPage() {
           <button className={styles.btn} onClick={() => navigate("/HomePage")}>
             Go back to Home page
           </button>
-          <button className={styles.btn} onClick={() => navigate("/allInvoice", {state:{page:'MyInvoice'}})} style={{backgroundColor:'green'}}>
+          <button
+            className={styles.btn}
+            onClick={() =>
+              navigate("/allInvoice", { state: { page: "MyInvoice" } })
+            }
+            style={{ backgroundColor: "green" }}
+          >
             Go To MyInvoices
           </button>
         </div>
       </div>
-      {!isMobile ? <Footer /> : <FooterMenu selected={1}/>}
+      {!isMobile ? <Footer /> : <FooterMenu selected={1} />}
     </>
   );
 }

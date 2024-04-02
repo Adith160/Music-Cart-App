@@ -181,7 +181,12 @@ function Invoice() {
           </div>
         </div>
       </div>
-      <div className={styles.summaryDiv}>
+      <div
+        className={styles.summaryDiv}
+        style={
+          isMobile && cartData.product.length > 4 ? { marginTop: "60%" } : {}
+        }
+      >
         <div className={styles.summary}>
           {!isMobile ? (
             <>
@@ -192,39 +197,63 @@ function Invoice() {
                 By placing your order, you agree to Musicart privacy notice and
                 conditions of use.
               </p>
+              <div className={styles.orderDiv}>
+                <h3>Order Summary</h3>
+
+                <span className={styles.spanStyle}>
+                  Items:{" "}
+                  <span style={{ width: "35%" }}>
+                    &#8377;{invoiceData.grandtotal - invoiceData.delivery}
+                  </span>
+                </span>
+                <span className={styles.spanStyle}>
+                  Delivery:{" "}
+                  <span style={{ width: "35%" }}>
+                    &#8377;{invoiceData.delivery}
+                  </span>
+                </span>
+              </div>
+              <span
+                className={styles.spanStyle}
+                style={{ color: "#B52B00", fontWeight: "500", width: "90%" }}
+              >
+                Order Total :{" "}
+                <span style={{ width: "40%" }}>
+                  &#8377;{invoiceData.grandtotal}
+                </span>
+              </span>
             </>
           ) : (
-            ''
-          )}
-          <div className={styles.orderDiv}>
-            <h3>Order Summary</h3>
+            <>
+              <div className={styles.orderDiv}>
+                <h3>Order Summary</h3>
 
-            <span className={styles.spanStyle}>
-              Items:{" "}
-              <span style={{ width: "35%" }}>
-                &#8377;{invoiceData.grandtotal - invoiceData.delivery}
+                <span className={styles.spanStyle}>
+                  Items:{" "}
+                  <span style={{ width: "35%" }}>
+                    &#8377;{invoiceData.grandtotal - invoiceData.delivery}
+                  </span>
+                </span>
+                <span className={styles.spanStyle}>
+                  Delivery:{" "}
+                  <span style={{ width: "35%" }}>
+                    &#8377;{invoiceData.delivery}
+                  </span>
+                </span>
+              </div>
+              <span
+                className={styles.spanStyle}
+                style={{ color: "#B52B00", fontWeight: "500", width: "90%" }}
+              >
+                Order Total :{" "}
+                <span style={{ width: "40%" }}>
+                  &#8377;{invoiceData.grandtotal}
+                </span>
               </span>
-            </span>
-            <span className={styles.spanStyle}>
-              Delivery:{" "}
-              <span style={{ width: "35%" }}>
-                &#8377;{invoiceData.delivery}
-              </span>
-            </span>
-          </div>
-          <span
-            className={styles.spanStyle}
-            style={{ color: "#B52B00", fontWeight: "500", width: "90%" }}
-          >
-            Order Total :{" "}
-            <span style={{ width: "40%" }}>
-              &#8377;{invoiceData.grandtotal}
-            </span>
-          </span>
-          {isMobile && (
-            <button className={styles.orderBtn} onClick={handlePlaceOrder}>
-              Place your order
-            </button>
+              <button className={styles.orderBtn} onClick={handlePlaceOrder}>
+                Place your order
+              </button>
+            </>
           )}
         </div>
       </div>

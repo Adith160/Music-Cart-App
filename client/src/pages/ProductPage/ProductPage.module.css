@@ -171,7 +171,6 @@ body {
     margin: 2% 5%;
 }
 
-/* Media query for screens smaller than 600px (typical mobile devices) */
 @media (max-width: 600px) {
     .logo {
         width: auto;

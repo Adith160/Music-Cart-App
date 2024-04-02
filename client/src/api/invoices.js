@@ -6,7 +6,7 @@ const backendUrl = process.env.REACT_APP_BACKEND_URL;
 export const addToMycart = async (productData) => {
   try {
     const reqUrl = `${backendUrl}/invoice/v1/addToCart`;
-    const reqPayload = productData ;
+    const reqPayload = productData;
     const token = localStorage.getItem("token");
     if (token) {
       axios.defaults.headers.common["Authorization"] = token;
@@ -26,7 +26,7 @@ export const addToMycart = async (productData) => {
 export const createInvoice = async (productData) => {
   try {
     const reqUrl = `${backendUrl}/invoice/v1/createInvoice`;
-    const reqPayload = productData ;
+    const reqPayload = productData;
     const token = localStorage.getItem("token");
     if (token) {
       axios.defaults.headers.common["Authorization"] = token;
@@ -99,5 +99,3 @@ export const getInvoiceById = async (invId) => {
     }
   }
 };
-
-

@@ -7,16 +7,25 @@ import cartIcon from "../../assets/Icons/Cart.png";
 
 function FooterMenu(props) {
   const navigate = useNavigate();
+  const IsLogin = !!localStorage.getItem("name");
+  const toggleLogout = (e) => {
+    e.stopPropagation();
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    navigate("/login");
+  };
   return (
     <div className={styles2.headerDiv}>
-      <span onClick={()=> navigate('/HomePage')}>
+      <span onClick={() => navigate("/HomePage")}>
         {props.selected === 1 && <p className={styles2.selected}></p>}
         <img src={homeIcon} alt="home" />
         Home
       </span>
-      <span  onClick={()=> navigate('/allinvoice', { state: {page: 'MyCart' } })}>
+      <span
+        onClick={() => navigate("/allinvoice", { state: { page: "MyCart" } })}
+      >
         {props.selected === 2 && <p className={styles2.selected}></p>}
-        <div className={styles2.count}>2</div>
+        <div className={styles2.count}>{props.cart}</div>
         <img
           src={cartIcon}
           alt="cart"
@@ -24,11 +33,19 @@ function FooterMenu(props) {
         />
         Cart
       </span>
-      <span onClick={()=> navigate('/HomePage')}>
-        {props.selected === 3 && <p className={styles2.selected}></p>}
-        <img src={personIcon} alt="person" />
-        Logout
-      </span>
+      {!IsLogin ? (
+        <span onClick={() => navigate("/Login")}>
+          {props.selected === 3 && <p className={styles2.selected}></p>}
+          <img src={personIcon} alt="person" />
+          Login
+        </span>
+      ) : (
+        <span onClick={toggleLogout}>
+          {props.selected === 3 && <p className={styles2.selected}></p>}
+          <img src={personIcon} alt="person" />
+          Logout
+        </span>
+      )}
     </div>
   );
 }

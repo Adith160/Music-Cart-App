@@ -32,10 +32,10 @@ function Header() {
   return (
     <div className={styles2.headerDiv}>
       {isMobile ? (
-         <div className={styles2.logo}>
-         <img src={logo} alt="logo" />
-         Music Cart
-       </div>
+        <div className={styles2.logo}>
+          <img src={logo} alt="logo" />
+          Music Cart
+        </div>
       ) : (
         <>
           <span id="phone">

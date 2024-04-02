@@ -1,62 +1,61 @@
 .mainDiv {
-    position: absolute;
-    bottom: 17vh;
-    right: 4vh;
-    height: 45vh;
-    width: 17vw;
-    border: none;
-    box-shadow: 3px 3px 8px 8px #919191;
-    border-radius: 2vh;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+  position: absolute;
+  bottom: 17vh;
+  right: 4vh;
+  height: 45vh;
+  width: 17vw;
+  border: none;
+  box-shadow: 3px 3px 8px 8px #919191;
+  border-radius: 2vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.topdiv{
-    width: 86%;
+.topdiv {
+  width: 86%;
 }
 
-.mainDiv select{
-    width:  14vw;
-    height: 80%;
-    margin: 1% 0% 0% 2%;
-    background-color: #F3F3F3;
-    border-color: #ccc3c3;
+.mainDiv select {
+  width: 14vw;
+  height: 80%;
+  margin: 1% 0% 0% 2%;
+  background-color: #f3f3f3;
+  border-color: #ccc3c3;
 }
 
-.mainDiv option{
-    font-size: 0.7rem;
+.mainDiv option {
+  font-size: 0.7rem;
 }
 
-.mainDiv textarea{
-    height: 15vh;
-    width: 14vw;
-    border: 1px solid #919191;
-    margin: 1% 0% 0% 2%;
-    font-weight: 400;
-    padding: 1%;
-    font-size: 0.8rem;
-    color: #919191;
+.mainDiv textarea {
+  height: 15vh;
+  width: 14vw;
+  border: 1px solid #919191;
+  margin: 1% 0% 0% 2%;
+  font-weight: 400;
+  padding: 1%;
+  font-size: 0.8rem;
+  color: #919191;
 }
 
-.textArea{
-    width: 86%;
+.textArea {
+  width: 86%;
 }
 
-.mainDiv span{
-    font-weight: 600;
-    font-size: 0.9rem;
+.mainDiv span {
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
-.mainDiv button{
-    width: 30%;height: 8%;
-    background-color: #2E0052;
-    border: none;
-    color: white;
-    border-radius: 2vh;
-    cursor: pointer;
+.mainDiv button {
+  width: 30%;
+  height: 8%;
+  background-color: #2e0052;
+  border: none;
+  color: white;
+  border-radius: 2vh;
+  cursor: pointer;
 }
-
-

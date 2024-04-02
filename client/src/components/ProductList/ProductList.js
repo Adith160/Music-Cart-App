@@ -1,9 +1,8 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import styles from "./ProductList.module.css";
-import buyIcon from '../../assets/Icons/BuyIcon.png'
+import buyIcon from "../../assets/Icons/BuyIcon.png";
 import { useNavigate } from "react-router-dom";
 import { addToMycart, getMyCart } from "../../api/invoices";
-
 
 function ProductList(props) {
   const [IsLogin, setIsLogin] = useState(false);
@@ -16,11 +15,10 @@ function ProductList(props) {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        if(IsLogin){
+        if (IsLogin) {
           const cartData = await getMyCart();
-        setMyCart(cartData);
+          setMyCart(cartData);
         }
-        
       } catch (error) {
         console.error("Error fetching cart data:", error);
       }
@@ -29,81 +27,104 @@ function ProductList(props) {
     fetchCart();
   }, [IsLogin]);
   const navigate = useNavigate();
-  const handleDetailClick=()=>{
-    navigate('/product', {state:{product:props.product}})
-  } 
+  const handleDetailClick = () => {
+    navigate("/product", { state: { product: props.product } });
+  };
 
-    const handleAddToCartClick = async (e) => {
-      e.stopPropagation();
-      const isLogged = !!localStorage.getItem('name');
-      if (isLogged) {
-        try {
-          let cartData = myCart;
-          // Fetch cart data again if not already fetched
-          if (!cartData & IsLogin) {
-            cartData = await getMyCart();
-            setMyCart(cartData);
-          }
-          // Calculate the total price of the product
-          const total = product.price;
-          if (!cartData || !cartData.invoice) {
-            // Create a new cart if it doesn't exist
-            const newCart = {
-              discount: 0,
-              delivery: 45,
-              products: [{
+  const handleAddToCartClick = async (e) => {
+    e.stopPropagation();
+    const isLogged = !!localStorage.getItem("name");
+    if (isLogged) {
+      try {
+        let cartData = myCart;
+        // Fetch cart data again if not already fetched
+        if (!cartData & IsLogin) {
+          cartData = await getMyCart();
+          setMyCart(cartData);
+        }
+        // Calculate the total price of the product
+        const total = product.price;
+        if (!cartData || !cartData.invoice) {
+          // Create a new cart if it doesn't exist
+          const newCart = {
+            discount: 0,
+            delivery: 45,
+            products: [
+              {
                 product_id: product._id,
                 qty: 1,
-                total: total
-              }],
-              placed: false,
-              totQty: 1, 
-              grandtotal: total
-            };
-            // Add the new cart to the backend
-            await addToMycart(newCart);
+                total: total,
+              },
+            ],
+            placed: false,
+            totQty: 1,
+            grandtotal: total,
+          };
+          // Add the new cart to the backend
+          await addToMycart(newCart);
+        } else {
+          // Update existing cart with the selected product
+          const existingProducts = cartData.invoice.products;
+          const existingProductIndex = existingProducts.findIndex(
+            (item) => item.product_id === product._id
+          );
+
+          if (existingProductIndex === -1) {
+            existingProducts.push({
+              product_id: product._id,
+              qty: 1,
+              total: total,
+            });
+            cartData.invoice.totQty = cartData.invoice.totQty
+              ? cartData.invoice.totQty + 1
+              : 1;
           } else {
-            // Update existing cart with the selected product
-            const existingProducts = cartData.invoice.products;
-            const existingProductIndex = existingProducts.findIndex(item => item.product_id === product._id);
-    
-            if (existingProductIndex === -1) {
-              existingProducts.push({
-                product_id: product._id, 
-                qty: 1,
-                total: total
-              });
-              cartData.invoice.totQty = cartData.invoice.totQty ? cartData.invoice.totQty + 1 : 1;
-            }
-             else {
-              existingProducts[existingProductIndex].qty += 1;
-              existingProducts[existingProductIndex].total += total;
-            }
-            debugger;  
-            cartData.invoice.grandtotal = cartData.invoice.grandtotal ? Number(cartData.invoice.grandtotal) : 0+ total;
+            existingProducts[existingProductIndex].qty += 1;
+            existingProducts[existingProductIndex].total += total;
           }
-    
-          delete cartData.invoice._id;
-          await addToMycart(cartData.invoice);
-        } catch (error) {
-          console.error("Error handling buy click:", error);
+          debugger;
+          cartData.invoice.grandtotal = cartData.invoice.grandtotal
+            ? Number(cartData.invoice.grandtotal)
+            : 0 + total;
         }
-      } else {
-        navigate('/login');
+
+        delete cartData.invoice._id;
+        await addToMycart(cartData.invoice);
+      } catch (error) {
+        console.error("Error handling buy click:", error);
       }
-      myCart && props.setCartCount(myCart.invoice.products.length);
-    };
+    } else {
+      navigate("/login");
+    }
+    myCart && props.setCartCount(myCart.invoice.products.length);
+  };
   return (
     <div className={styles.mainDiv}>
       <div className={styles.imgDiv}>
-        <img src={props.product.images1} alt="img" className={styles.image} style={{height:'29vh'}}/>
-        <img src={buyIcon} alt="img" className={styles.buy} onClick={handleAddToCartClick}/>
+        <img
+          src={props.product.images1}
+          alt="img"
+          className={styles.image}
+          style={{ height: "29vh" }}
+        />
+        <img
+          src={buyIcon}
+          alt="img"
+          className={styles.buy}
+          onClick={handleAddToCartClick}
+        />
       </div>
 
       <div className={styles.rightDiv}>
-        <span style={{fontWeight:'800', fontSize:'1.5rem'}}>{props.product.name}  </span> <br />
-        <span>Price -  &#8377; {props.product.price} </span> <br />
-        <span>{props.product.color}  | {props.product.type} </span> <br />
+        <span style={{ fontWeight: "800", fontSize: "1.5rem" }}>
+          {props.product.name}{" "}
+        </span>{" "}
+        <br />
+        <span>Price - &#8377; {props.product.price} </span> <br />
+        <span>
+          {props.product.color} | {props.product.type}{" "}
+        </span>{" "}
+        <br />
         <span>{props.product.topFeatures} </span>
         <button onClick={handleDetailClick}>Details</button>
       </div>

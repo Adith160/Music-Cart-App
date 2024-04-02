@@ -1,74 +1,69 @@
-.productsDiv{
-    width: 100%;
-    max-height: 100%;
-    /* border-bottom: 1px  solid #E1E1E1; */
+.productsDiv {
+  width: 100%;
+  max-height: 100%;
 }
-.productDiv{
-    max-width: 100%;
-    height: 80%;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 2% 0% 5% 0%;
-    font-weight: 500;
-}
-
-.imageDiv{
-    width: 16%;
-    border: 1px solid #2E0052;
-    border-radius: 1vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.productDiv {
+  max-width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 2% 0% 5% 0%;
+  font-weight: 500;
 }
 
-.imageDiv img{
-    width: 80%;
+.imageDiv {
+  width: 16%;
+  border: 1px solid #2e0052;
+  border-radius: 1vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-select{
-    width: 110%;
-    height: 2.3vh;
-    font-size: 0.6rem;
+.imageDiv img {
+  width: 80%;
 }
 
-.title{
-    font-size: 0.9rem;
+select {
+  width: 110%;
+  height: 2.3vh;
+  font-size: 0.6rem;
 }
 
-.value{
-    font-weight: 400;
-    font-size: 0.8rem;
-    color: #A2A2A2;
+.title {
+  font-size: 0.9rem;
 }
 
-.mobileDiv{
-    height: 30vh;
-    width: 120%;
-    margin-bottom: 6%;
-    background-color: #DBDBDB;
-    display: flex;
-    justify-content: space-around;
+.value {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #a2a2a2;
 }
 
-.mobileDiv img{
-    width: 40%;
-    height: 55%;
-    margin-top: 5%;
+.mobileDiv {
+  height: 30vh;
+  width: 120%;
+  margin-bottom: 6%;
+  background-color: #dbdbdb;
+  display: flex;
+  justify-content: space-around;
 }
 
-.mobileRightDiv{
-    width: 55%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    gap: 1%;
+.mobileDiv img {
+  width: 40%;
+  height: 55%;
+  margin-top: 5%;
 }
 
-.mobileRightDiv span{
-    width: 85%;
+.mobileRightDiv {
+  width: 55%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
 }
 
-@media (max-width: 600px) {
-
+.mobileRightDiv span {
+  width: 85%;
 }

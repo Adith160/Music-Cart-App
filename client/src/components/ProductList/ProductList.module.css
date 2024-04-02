@@ -1,62 +1,62 @@
 .mainDiv {
-    height: auto;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .imgDiv {
-    width: 16%;
-    height: 33vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #D4E5FF;
-    box-sizing: border-box;
-    margin-left: 5%;
-    position: relative;
+  width: 16%;
+  height: 33vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d4e5ff;
+  box-sizing: border-box;
+  margin-left: 5%;
+  position: relative;
 }
 
 .image {
-    width: 80%;
-    height: 100%;
-    height: auto;
+  width: 80%;
+  height: 100%;
+  height: auto;
 }
 
-.buy{
-    position: absolute;
-    bottom: 12%;
-    right: 10%;
-    height: 17%;
-    cursor: pointer;
+.buy {
+  position: absolute;
+  bottom: 12%;
+  right: 10%;
+  height: 17%;
+  cursor: pointer;
 }
 
 .rightDiv {
-    width: 77%;
-    height: 50%;
-    padding: 10px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
+  width: 77%;
+  height: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .rightDiv span {
-    font-weight: 600;
-    font-size: 1.1rem;
-    text-align: center;
-    text-align: left;
-    width: 85%;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: center;
+  text-align: left;
+  width: 85%;
 }
 
-.rightDiv button{
-    width: 17%;
-    height: 4.2vh;
-    border-radius: 2vh;
-    border: none;
-    background-color: #2E0052;
-    color: white;
-    cursor: pointer;
-    margin-top: 1%;
+.rightDiv button {
+  width: 17%;
+  height: 4.2vh;
+  border-radius: 2vh;
+  border: none;
+  background-color: #2e0052;
+  color: white;
+  cursor: pointer;
+  margin-top: 1%;
 }

@@ -11,9 +11,16 @@ function InvoiceContainer(props) {
     <div className={styles.mainDiv}>
       <div className={styles.desc}>
         <img src={fileIcon} alt="file" />
-        <p>{name} <br/> {address}</p>
+        <p>
+          {name} <br /> {address}
+        </p>
       </div>
-      <button className={styles.viewInvoice} onClick={() => navigate(`/allInvoice`, {state:{page:"Invoice", invId:invId}})}>
+      <button
+        className={styles.viewInvoice}
+        onClick={() =>
+          navigate(`/allInvoice`, { state: { page: "Invoice", invId: invId } })
+        }
+      >
         View Invoice
       </button>
     </div>

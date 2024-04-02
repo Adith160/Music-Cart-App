@@ -1,12 +1,12 @@
-.headerDiv{
-    background-color: #2E0052;
-    height: 4vh;
-    width: 100vw;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    position: absolute;
-    font-size: 0.8rem;
+.headerDiv {
+  background-color: #2e0052;
+  height: 4vh;
+  width: 100vw;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: absolute;
+  font-size: 0.8rem;
 }

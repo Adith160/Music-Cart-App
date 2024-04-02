@@ -21,7 +21,6 @@ export const registerUser = async ({ name, mobile, email, password }) => {
 //api for user login
 export const loginUser = async ({ credential, password }) => {
   try {
-    debugger;
     const reqUrl = `${backendUrl}/auth/v1/login`;
     const reqPayload = { credential, password };
     const response = await axios.post(reqUrl, reqPayload);
@@ -35,4 +34,3 @@ export const loginUser = async ({ credential, password }) => {
     }
   }
 };
-

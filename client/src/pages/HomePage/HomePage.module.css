@@ -1,231 +1,302 @@
 body {
-    position: relative;
-    height: 100vh;
-    width: 100vw;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
 }
 
-.topDiv{
-    width: 93%;
-    margin-top: 1%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #2E0052;
+.topDiv {
+  width: 93%;
+  margin-top: 1%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #2e0052;
 }
 
 .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #2E0052;
-    font-size: 1.3rem;
-    font-weight: 500;
-    width: 30%;
-    margin-left: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #2e0052;
+  font-size: 1.3rem;
+  font-weight: 500;
+  width: 30%;
+  margin-left: 2%;
 }
 
 .logo img {
-    max-width: 9%;
+  max-width: 9%;
 }
 
-.logo span{
-    font-size: 0.9rem;
-    margin-left: 5%;
+.logo span {
+  font-size: 0.9rem;
+  margin-left: 5%;
 }
 
-.profileDiv{
-    width: 15%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.profileDiv {
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.dpDiv{
-    border-radius: 50%;
-    border: 1px solid #2E0052;
-    width: 24%;
-    height: 6.5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 800;
-    font-size: 1.2rem;
-    cursor: pointer;
-    position: relative;
+.dpDiv {
+  border-radius: 50%;
+  border: 1px solid #2e0052;
+  width: 24%;
+  height: 6.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: relative;
 }
 
 .dropdown {
-    position: absolute;
-    margin-top: 19vh;
-    width: 15vw;
-    height: 10vh;
-    font-weight: 500;
-    font-size: 1.1rem;
-    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 2vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1vh;
-    background-color: white;
+  position: absolute;
+  margin-top: 19vh;
+  width: 15vw;
+  height: 10vh;
+  font-weight: 500;
+  font-size: 1.1rem;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 2vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1vh;
+  background-color: white;
 }
 
-.viewCart{
-    background-color: #1D7000;
-    width: 65%;
-    height: 4.5vh;
-    border-radius: 2vh;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: small;
-    cursor: pointer;
+.viewCart {
+  background-color: #1d7000;
+  width: 65%;
+  height: 4.5vh;
+  border-radius: 2vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: small;
+  cursor: pointer;
 }
 
-.viewCart img{
-    height: 65%;
-    margin-right: 4%;
+.viewCart img {
+  height: 65%;
+  margin-right: 4%;
 }
 
-.topDownDiv{
-    height: 22vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 2%
+.topDownDiv {
+  height: 22vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
 }
 
-.insideDiv{
-    height: 100%;
-    width: 90%;
-    background: linear-gradient(to right, #7286B4 05%, #E794CE 95%);
-    border-radius: 2vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.insideDiv {
+  height: 100%;
+  width: 90%;
+  background: linear-gradient(to right, #7286b4 05%, #e794ce 95%);
+  border-radius: 2vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.insideDiv img{
-    position: static;
-    height: 27vh;
-    width: 23%;
-    margin-top: -5vh;
+.insideDiv img {
+  position: static;
+  height: 27vh;
+  width: 23%;
+  margin-top: -5vh;
 }
 
-.insideDiv span{
-    width: 40%;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 500;
+.insideDiv button{
+  width: 45%;
+  height: 4vh;
+  border-radius: 2vh;
+  border: none;
+  background-color: #2E0052;
+  color: white;
+  margin-left: -6vh;
+  cursor: pointer;
 }
 
-.searchDiv{
-    width: 90%;
-    margin: 1% 0 0 5%;
-    height: 6vh;
-    border: 2px solid #C8C8C8;
-    border-radius: 4vh;
-    display: flex;
-    align-items: center;
+.insideDiv span {
+  width: 40%;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
-.searchDiv img{
-    height: 70%;
-    margin-left: 3%;
+.searchDiv {
+  width: 90%;
+  margin: 1% 0 0 5%;
+  height: 6vh;
+  border: 2px solid #c8c8c8;
+  border-radius: 4vh;
+  display: flex;
+  align-items: center;
 }
 
-.searchDiv input{
-    border: none;
-    width: 90%;
-    height: 90%;
-    font-size: 1rem;
+.searchDiv img {
+  height: 70%;
+  margin-left: 3%;
+}
+
+.searchDiv input {
+  border: none;
+  width: 90%;
+  height: 90%;
+  font-size: 1rem;
 }
 
 .searchDiv input:focus {
-    outline: none; 
+  outline: none;
 }
 
-.filterDiv{
-    width: 90%;
-    height: 6vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1%;
+.filterDiv {
+  width: 90%;
+  height: 6vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1%;
 }
 
-.filterDiv select{
-    height: 65%;
-    font-size: 0.8rem;
-    border-radius: 2vh;
-    max-width: 9%;
-    font-weight: 600;
-    text-align: center;
+.filterDiv select {
+  height: 65%;
+  font-size: 0.8rem;
+  border-radius: 2vh;
+  max-width: 9%;
+  font-weight: 600;
+  text-align: center;
 }
 
-.filters{
-    width: 60%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-left: 3%;
-    height: 100%;
+.filters {
+  width: 60%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 3%;
+  height: 100%;
 }
 
-.filters select{
-    background-color: #C8C8C8;
-    border: none;
+.filters select {
+  background-color: #c8c8c8;
+  border: none;
 }
 
-.menu{
-    width: 8%;
-    display: flex;
-    margin-right: 2%;
+.menu {
+  width: 8%;
+  display: flex;
+  margin-right: 2%;
 }
 
-.menu img{
-    height: 4.5vh;
-    cursor: pointer;
+.menu img {
+  height: 4.5vh;
+  cursor: pointer;
 }
 
-.feedbackDIv{
-    height: 9%;
-    width: 4.5%;
-    border-radius: 50%;
-    position: fixed;
-    bottom: 5vh;
-    right: 16vh;
-    background-color: white;
-    box-shadow: 2px 2px 10px 1px #919191;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+.feedbackDIv {
+  height: 9%;
+  width: 4.5%;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 5vh;
+  right: 16vh;
+  background-color: white;
+  box-shadow: 2px 2px 10px 1px #919191;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
-.feedbackDIv img{
-    height: 50%;
-    width: 50%;
+.feedbackDIv img {
+  height: 50%;
+  width: 50%;
 }
 
 .mainContainer {
-    height: 35vh;
-    width: 93%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 1% 0 0 3.7%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    gap: 25% 0; /* Adjust the value to set the desired space between each div */
+  height: 35vh;
+  width: 93%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1% 0 0 3.7%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  gap: 25% 0;
 }
-
 
 .mainContainer::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
+@media only screen and (max-width: 768px) {
 
+  .body{
+    overflow: hidden;
+  }
+
+  .topDownDiv{
+    margin-top: 10%;
+    height: 20vh;
+  }
+
+  .insideDiv span{
+    width: 100%;
+    text-align: left;
+    font-size: 1.8rem;
+    margin-left: 2%;
+  }
+
+  .insideDiv img {
+    position: static;
+    height: 25vh;
+    width: 26%;
+    margin-top: -5vh;
+  }
+
+  .insideDiv button{
+    height: 3vh;
+    margin-left: 0;
+  }
+
+  .filterDiv {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch; 
+  }
+
+  .filterDiv::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filterDiv select {
+    height: 65%;
+    font-size: 0.8rem;
+    border-radius: 1vh;
+    width: 45vw;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .filters {
+    width: 60vh;
+    margin-left: -4%;
+  }
+
+  .mainContainer {
+    height: 58vh;
+    width: 98%;
+    gap: 10% 0;
+    overflow-x: hidden;
+  }
+}

@@ -23,7 +23,7 @@ function MyInvoices() {
       {invoices.map((invoice) => (
         <InvoiceContainer
           key={invoice._id}
-          name={localStorage.getItem('name')}
+          name={localStorage.getItem("name")}
           address={invoice.address}
           invId={invoice._id}
         />
