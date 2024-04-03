@@ -31,7 +31,6 @@ export const createInvoice = async (productData) => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = token;
     }
-    debugger;
     const response = await axios.post(reqUrl, reqPayload);
     return response.data;
   } catch (error) {

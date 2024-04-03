@@ -11,7 +11,7 @@ function MyInvoices() {
         const allInvoices = await getAllInvoices();
         setInvoices(allInvoices);
       } catch (error) {
-        console.error("Error fetching invoices:", error);
+        //
       }
     };
 

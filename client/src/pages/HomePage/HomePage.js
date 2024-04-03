@@ -318,7 +318,25 @@ function HomePage() {
 
   return (
     <>
-      <Header />
+      {isMobile ? (
+        <div className={styles.header}>
+          <div className={styles.searchMobDiv}>
+          <img src={searchIcon} alt="search" />
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Search Musicart"
+            value={searchQuery}
+            onChange={handleSearch}
+            style={{ height: "80%" }}
+          />
+        </div>
+        </div>
+      ) : (
+        <Header />
+      )}
+
       {!isMobile && (
         <>
           <div className={styles.topDiv}>
@@ -358,7 +376,7 @@ function HomePage() {
         <div className={styles.insideDiv}>
           <span>
             Grab upto 50% off on <br /> Selected headphones
-            <button  onClick={() => handleViewCartClick()}>Buy Now</button>
+            <button onClick={() => handleViewCartClick()}>Buy Now</button>
           </span>
           <img src={girlImage} alt="img" />
         </div>
@@ -381,7 +399,9 @@ function HomePage() {
 
       <div className={styles.filterDiv}>
         <div className={styles.filters}>
-          {isMobile ? '' : !ShowList ? (
+          {isMobile ? (
+            ""
+          ) : !ShowList ? (
             <div className={styles.menu}>
               <img
                 src={gridSelIcon}

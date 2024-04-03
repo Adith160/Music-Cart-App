@@ -20,7 +20,7 @@ function ProductList(props) {
           setMyCart(cartData);
         }
       } catch (error) {
-        console.error("Error fetching cart data:", error);
+        //
       }
     };
 
@@ -91,7 +91,7 @@ function ProductList(props) {
         delete cartData.invoice._id;
         await addToMycart(cartData.invoice);
       } catch (error) {
-        console.error("Error handling buy click:", error);
+        //
       }
     } else {
       navigate("/login");

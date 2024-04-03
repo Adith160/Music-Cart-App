@@ -12,7 +12,7 @@ function ProductCart({ product, onQuantityChange, isMobile }) {
         const result = await getProductById(product.product_id);
         setProductData(result);
       } catch (error) {
-        console.error("Error fetching product data:", error);
+        //
       }
     };
     fetchProductData();
@@ -75,7 +75,7 @@ function ProductCart({ product, onQuantityChange, isMobile }) {
         <div className={styles.mobileDiv}>
           <img src={productData.images1} alt="Product" />
           <div className={styles.mobileRightDiv}>
-            <span style={{ fontSize: "1.3rem" }}> {productData.name}</span>
+            <span style={{ fontSize: "1.3rem", margin:'6% 0 -10% 0' }}> {productData.name}</span>
             <br />
             <h3>{productData.price}</h3>
             <br />

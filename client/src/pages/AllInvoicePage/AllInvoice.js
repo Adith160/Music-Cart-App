@@ -17,6 +17,7 @@ import { useLocation } from "react-router-dom";
 
 function AllInvoice() {
   const [isMobile, setIsMobile] = useState(false);
+  const [cartCount, setCartCount] = useState('');
   const location = useLocation();
   const { state } = location;
   const page = state && state.page;
@@ -61,7 +62,7 @@ function AllInvoice() {
                 }
               >
                 <img src={cartIcon} alt="cart" />
-                View Cart
+                View Cart {cartCount}
               </span>
             ) : (
               ""
@@ -133,7 +134,7 @@ function AllInvoice() {
             </div>
           )}
           <div className={styles.mainContainer}>
-            <MyCart />
+            <MyCart setCartCount={setCartCount}/>
           </div>
         </>
       )}
@@ -195,9 +196,9 @@ function AllInvoice() {
       {!isMobile ? (
         <Footer />
       ) : page === "MyCart" ? (
-        <FooterMenu selected={2} />
+        <FooterMenu selected={2} cart={cartCount}/>
       ) : (
-        <FooterMenu selected={1} />
+        <FooterMenu selected={1} cart={0}/>
       )}
     </>
   );

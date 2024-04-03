@@ -116,7 +116,7 @@ body {
 
 .insideDiv button{
   width: 45%;
-  height: 4vh;
+  height: 5vh;
   border-radius: 2vh;
   border: none;
   background-color: #2E0052;
@@ -244,6 +244,48 @@ body {
     overflow: hidden;
   }
 
+  .header{
+    background-color: #2e0052;
+    height: 7vh;
+    width: 97vw;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 0% 1% 0% 2%;
+    position: static;
+    font-size: 0.8rem;
+  }
+  
+.searchMobDiv {
+  width: 90%;
+  margin: 1% 0 0 5%;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  border-radius: 1vh;
+}
+
+.searchMobDiv img {
+  height: 83%;
+  margin-left: 2.4%;
+  background-color: white;
+  border-top-left-radius: 1vh;
+  border-bottom-left-radius: 1vh;
+}
+
+.searchMobDiv input {
+  border: none;
+  width: 90%;
+  height: 90%;
+  font-size: 1rem;
+}
+
+.searchMobDiv input:focus {
+  outline: none;
+}
+
   .topDownDiv{
     margin-top: 10%;
     height: 20vh;
@@ -252,7 +294,7 @@ body {
   .insideDiv span{
     width: 100%;
     text-align: left;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-left: 2%;
   }
 

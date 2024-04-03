@@ -10,7 +10,6 @@ const getAllProducts = async (req, res) => {
       success: true
     });
   } catch (error) {
-    console.error("Error in getting products by color:", error);
     return res.status(500).json({ error: "Internal Server Error", success: false });
   }
 };
@@ -37,7 +36,6 @@ const getProductById = async (req, res) => {
         success: true
       });
     } catch (error) {
-      console.error("Error in getting product by ID:", error);
       return res.status(500).json({ error: "Internal Server Error", success: false });
     }
   };
@@ -68,7 +66,6 @@ const getProductById = async (req, res) => {
         success: true
       });
     } catch (error) {
-      console.error("Error in creating product:", error);
       return res.status(500).json({ error: "Internal Server Error", success: false });
     }
   };

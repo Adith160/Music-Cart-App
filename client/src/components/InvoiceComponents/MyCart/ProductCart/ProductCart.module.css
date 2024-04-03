@@ -51,7 +51,7 @@ select {
 }
 
 .mobileDiv img {
-  width: 40%;
+  width: 36%;
   height: 55%;
   margin-top: 5%;
 }
@@ -66,4 +66,9 @@ select {
 
 .mobileRightDiv span {
   width: 85%;
+}
+
+.mobileRightDiv h3 {
+  margin: 0;
+  padding: 0;
 }

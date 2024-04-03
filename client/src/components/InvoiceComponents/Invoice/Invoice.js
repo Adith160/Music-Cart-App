@@ -15,7 +15,6 @@ function Invoice() {
   const [productsData, setProductsData] = useState({});
 
   const navigate = useNavigate();
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600);
@@ -41,7 +40,7 @@ function Invoice() {
           );
         }
       } catch (error) {
-        console.error("Error fetching cart data:", error);
+        //
       }
     };
     fetchCartData();
@@ -57,7 +56,7 @@ function Invoice() {
         });
         setProductsData(productsMap);
       } catch (error) {
-        console.error("Error fetching products data:", error);
+        //
       }
     };
     fetchProductsData();
@@ -92,7 +91,6 @@ function Invoice() {
   const handleProductClick = (productId) => {
     setSelectedProduct(productsData[productId]);
   };
-
   return (
     <div className={styles.mainDiv}>
       <div className={styles.leftDiv}>
@@ -107,6 +105,7 @@ function Invoice() {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder="Enter address"
+                style={!isMobile ?{height:'10vh'}:{}}
               />
             </div>
           </div>
@@ -184,7 +183,7 @@ function Invoice() {
       <div
         className={styles.summaryDiv}
         style={
-          isMobile && cartData.product.length > 4 ? { marginTop: "60%" } : {}
+          isMobile & cartData.length > 4 ? { marginTop: "60%" } : {}
         }
       >
         <div className={styles.summary}>

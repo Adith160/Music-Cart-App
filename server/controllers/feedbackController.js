@@ -21,7 +21,6 @@ const createFeedback = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.error("Error in creating feedback:", error);
     return res.status(500).json({ error: "Internal Server Error", success: false });
   }
 };

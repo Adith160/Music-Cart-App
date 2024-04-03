@@ -45,7 +45,6 @@ function Invoice(props) {
           setSelectedProduct(productsMap[invoice.products[0].product_id]);
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
         toast.error("Error fetching data:", error.message);
       }
     };
@@ -56,7 +55,6 @@ function Invoice(props) {
   const handleProductClick = (productId) => {
     setSelectedProduct(productsData[productId]);
   };
-  console.log(address);
   return (
     <div className={styles.mainDiv}>
       <div className={styles.leftDiv}>

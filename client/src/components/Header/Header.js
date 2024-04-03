@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import callPng from "../../assets/Icons/Call.png";
 import logo from "../../assets/Icons/logo.png";
 
-function Header() {
+function Header(props) {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -31,7 +31,7 @@ function Header() {
 
   return (
     <div className={styles2.headerDiv}>
-      {isMobile ? (
+      {isMobile ? props.search ? ('') : (
         <div className={styles2.logo}>
           <img src={logo} alt="logo" />
           Music Cart

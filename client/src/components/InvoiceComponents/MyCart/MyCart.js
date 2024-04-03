@@ -4,7 +4,7 @@ import Products from "./ProductCart/ProductCart";
 import { useNavigate } from "react-router-dom";
 import { getMyCart, addToMycart } from "../../../api/invoices";
 
-function MyCart() {
+function MyCart(props) {
   const [cartData, setCartData] = useState([]);
   const [fullData, setFullData] = useState({});
   const [isMobile, setIsMobile] = useState(false);
@@ -17,12 +17,13 @@ function MyCart() {
         const invoice = await getMyCart();
         setCartData(invoice.invoice.products);
         setFullData(invoice.invoice);
+        props.setCartCount(cartData.length)
       } catch (error) {
-        console.error("Error fetching cart data:", error);
+        //
       }
     };
     fetchCartData();
-  }, []);
+  }, [cartData.length, props]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -72,7 +73,7 @@ function MyCart() {
 
       navigate("/allinvoice", { state: { page: "Checkout" } });
     } catch (error) {
-      console.error("Error placing order:", error);
+      //
     }
   };
 

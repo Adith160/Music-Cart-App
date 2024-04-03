@@ -21,7 +21,7 @@ function ProductGrid(props) {
           setMyCart(cartData);
         }
       } catch (error) {
-        console.error("Error fetching cart data:", error);
+        //
       }
     };
 
@@ -83,7 +83,6 @@ function ProductGrid(props) {
             existingProducts[existingProductIndex].qty += 1;
             existingProducts[existingProductIndex].total += total;
           }
-          debugger;
           cartData.invoice.grandtotal = cartData.invoice.grandtotal
             ? Number(cartData.invoice.grandtotal)
             : 0 + total;
@@ -92,7 +91,7 @@ function ProductGrid(props) {
         delete cartData.invoice._id;
         await addToMycart(cartData.invoice);
       } catch (error) {
-        console.error("Error handling buy click:", error);
+        //
       }
     } else {
       navigate("/login");
