@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-around;
   color: #2e0052;
-  position: absolute;
+  position: fixed;
   font-size: 0.8rem;
   border-top: 1px solid #c8c8c8;
 }
