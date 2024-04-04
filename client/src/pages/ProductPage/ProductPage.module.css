@@ -219,6 +219,7 @@ body {
 
     .rightContainer {
         width: 100%;
+        margin-bottom: 26%;
     }
 
     .rightContainer h2 {
@@ -292,9 +293,9 @@ body {
 
     .sliders img{
         height: 90%;
-        width: 90%;
+        width: 75%;
         margin-top: 2%;
-        margin-left: 0.8%;
+        margin-left: 10%;
     }
 
 }

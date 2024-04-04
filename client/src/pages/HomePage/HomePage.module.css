@@ -268,7 +268,7 @@ body {
 }
 
 .searchMobDiv img {
-  height: 83%;
+  height: 86%;
   margin-left: 2.4%;
   background-color: white;
   border-top-left-radius: 1vh;
@@ -287,7 +287,7 @@ body {
 }
 
   .topDownDiv{
-    margin-top: 10%;
+    margin-top: 5%;
     height: 20vh;
   }
 
@@ -300,9 +300,9 @@ body {
 
   .insideDiv img {
     position: static;
-    height: 25vh;
+    height: 23vh;
     width: 26%;
-    margin-top: -5vh;
+    margin-top: -3vh;
   }
 
   .insideDiv button{
@@ -336,9 +336,10 @@ body {
   }
 
   .mainContainer {
-    height: 58vh;
+    height: 46vh;
     width: 98%;
     gap: 10% 0;
     overflow-x: hidden;
+    padding-bottom: 10vh;
   }
 }
