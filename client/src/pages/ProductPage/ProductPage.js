@@ -13,7 +13,6 @@ import backIcon from "../../assets/Icons/Back.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { toast } from "react-toastify";
 
 function ProductPage() {
   const [isMobile, setIsMobile] = useState(false);
@@ -126,7 +125,7 @@ function ProductPage() {
           state: { product: product, page: "MyCart" },
         });
       } catch (error) {
-        toast.error("Something Went Wrong", error);
+        //toast.error("Something Went Wrong", error);
       }
     } else {
       navigate("/login");
