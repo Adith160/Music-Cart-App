@@ -126,7 +126,7 @@ body {
 
 .rightContainer{
     width: 55%;
-    height: 110%;
+    height: 120%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
