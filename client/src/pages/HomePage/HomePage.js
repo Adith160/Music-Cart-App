@@ -343,7 +343,9 @@ function HomePage() {
             <div className={styles.logo}>
               <img src={logo} alt="logo" />
               Music Cart
-              <span>Home / Invoices</span>
+              <span>Home  </span> <span style={{cursor:'pointer'}} onClick={() =>
+              navigate("/allInvoice", { state: { page: "MyInvoice" } })
+            }>Invoices</span>
             </div>
             {IsLogin && (
               <div className={styles.profileDiv}>
