@@ -288,7 +288,12 @@ body {
 
   .topDownDiv{
     margin-top: 5%;
-    height: 20vh;
+    height: 22vh;
+    font-size: 0.5rem;
+  }
+
+  .topDownDiv button{
+    margin-bottom: 3vh;
   }
 
   .insideDiv span{
