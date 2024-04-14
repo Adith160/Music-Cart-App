@@ -107,16 +107,16 @@ function MyCart(props) {
                 Total MRP <span>&#8377; {calculateTotalPrice()}</span>
               </span>
               <span className={styles.amount}>
-                Discount on MRP <span>&#8377; {fullData.discount}</span>
+                Discount on MRP <span>&#8377; {fullData.discount ? fullData.discount : 0}</span>
               </span>
               <span className={styles.amount}>
-                Convenience Fee <span>&#8377; {fullData.delivery}</span>
+                Convenience Fee <span>&#8377; {fullData.delivery ? fullData.delivery : 0}</span>
               </span>
               <div className={styles.total}>
                 <span className={styles.amount}>
                   Total Amount{" "}
                   <span>
-                    &#8377; {calculateTotalPrice() + fullData.delivery}
+                    &#8377; { fullData.delivery ? calculateTotalPrice() + fullData.delivery : 0}
                   </span>
                 </span>
                 <br />
@@ -145,7 +145,7 @@ function MyCart(props) {
           <div className={styles.total}>
             <span className={styles.amount}>
               Total Amount{" "}
-              <span>&#8377; {calculateTotalPrice() + fullData.delivery}</span>
+              <span>&#8377; { fullData.delivery ? calculateTotalPrice() + fullData.delivery : 0}</span>
             </span>
             <br />
             <button className={styles.viewInvoice} onClick={handlePlaceOrder}>
