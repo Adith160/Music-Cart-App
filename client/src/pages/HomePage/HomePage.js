@@ -321,17 +321,17 @@ function HomePage() {
       {isMobile ? (
         <div className={styles.header}>
           <div className={styles.searchMobDiv}>
-          <img src={searchIcon} alt="search" />
-          <input
-            type="text"
-            name="search"
-            id="search"
-            placeholder="Search Musicart"
-            value={searchQuery}
-            onChange={handleSearch}
-            style={{ height: "80%" }}
-          />
-        </div>
+            <img src={searchIcon} alt="search" />
+            <input
+              type="text"
+              name="search"
+              id="search"
+              placeholder="Search Musicart"
+              value={searchQuery}
+              onChange={handleSearch}
+              style={{ height: "80%" }}
+            />
+          </div>
         </div>
       ) : (
         <Header />
@@ -343,9 +343,19 @@ function HomePage() {
             <div className={styles.logo}>
               <img src={logo} alt="logo" />
               Music Cart
-              <span>Home  </span> {IsLogin ? <span style={{cursor:'pointer'}} onClick={() =>
-              navigate("/allInvoice", { state: { page: "MyInvoice" } })
-            }>Invoices</span> : ''} 
+              <span>Home </span>{" "}
+              {IsLogin ? (
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() =>
+                    navigate("/allInvoice", { state: { page: "MyInvoice" } })
+                  }
+                >
+                  Invoices
+                </span>
+              ) : (
+                ""
+              )}
             </div>
             {IsLogin && (
               <div className={styles.profileDiv}>

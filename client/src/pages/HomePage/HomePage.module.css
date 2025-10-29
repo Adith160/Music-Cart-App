@@ -121,7 +121,7 @@ body {
   border: none;
   background-color: #2E0052;
   color: white;
-  margin-left: -6vh;
+  /* margin-left: 6vh; */
   cursor: pointer;
 }
 
